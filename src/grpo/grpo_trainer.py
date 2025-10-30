@@ -49,6 +49,63 @@ class GRPOConfig:
     eval_every_n_steps: int = 50
 
 
+def collate_fn_pad(batch: List[Dict[str, torch.Tensor]]) -> Dict[str, torch.Tensor]:
+    """
+    Collate function that pads sequences to the same length in a batch.
+
+    Args:
+        batch: List of samples from dataset
+
+    Returns:
+        Batched and padded tensors
+    """
+    # Find max lengths in this batch
+    max_problem_len = max(item['problem_ids'].size(0) for item in batch)
+    max_solution_len = max(item['solution_ids'].size(0) for item in batch)
+
+    # Pad sequences
+    problem_ids_list = []
+    problem_attention_list = []
+    solution_ids_list = []
+    solution_attention_list = []
+    rewards_list = []
+
+    for item in batch:
+        # Pad problem
+        problem_len = item['problem_ids'].size(0)
+        if problem_len < max_problem_len:
+            pad_len = max_problem_len - problem_len
+            problem_ids = torch.cat([item['problem_ids'], torch.zeros(pad_len, dtype=torch.long)])
+            problem_attention = torch.cat([item['problem_attention_mask'], torch.zeros(pad_len, dtype=torch.long)])
+        else:
+            problem_ids = item['problem_ids']
+            problem_attention = item['problem_attention_mask']
+
+        # Pad solution
+        solution_len = item['solution_ids'].size(0)
+        if solution_len < max_solution_len:
+            pad_len = max_solution_len - solution_len
+            solution_ids = torch.cat([item['solution_ids'], torch.zeros(pad_len, dtype=torch.long)])
+            solution_attention = torch.cat([item['solution_attention_mask'], torch.zeros(pad_len, dtype=torch.long)])
+        else:
+            solution_ids = item['solution_ids']
+            solution_attention = item['solution_attention_mask']
+
+        problem_ids_list.append(problem_ids)
+        problem_attention_list.append(problem_attention)
+        solution_ids_list.append(solution_ids)
+        solution_attention_list.append(solution_attention)
+        rewards_list.append(item['rewards'])
+
+    return {
+        'problem_ids': torch.stack(problem_ids_list),
+        'problem_attention_mask': torch.stack(problem_attention_list),
+        'solution_ids': torch.stack(solution_ids_list),
+        'solution_attention_mask': torch.stack(solution_attention_list),
+        'rewards': torch.stack(rewards_list),
+    }
+
+
 class TrajectoryDataset(Dataset):
     """Dataset for MCTS-generated trajectories with rewards."""
 
@@ -313,6 +370,7 @@ class GRPOTrainer:
             batch_size=self.config.batch_size,
             shuffle=True,
             num_workers=0,
+            collate_fn=collate_fn_pad,  # Use custom collate function for padding
         )
 
         results = {

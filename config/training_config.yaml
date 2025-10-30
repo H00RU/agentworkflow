@@ -29,7 +29,7 @@ grpo:
 
 # Model configuration
 model:
-  name: Qwen/Qwen2-7B         # HuggingFace model name
+  name: /root/models/Qwen2.5-7B-Instruct  # 本地模型路径 (也可以用 Qwen/Qwen2.5-7B-Instruct 从 HuggingFace 下载)
   use_lora: true              # Use LoRA fine-tuning
   lora_rank: 8                # LoRA rank
   lora_alpha: 16              # LoRA alpha
@@ -38,7 +38,7 @@ model:
 training:
   num_epochs: 3               # Total training epochs
   num_episodes: 3             # Episodes per epoch
-  problems_per_episode: 5     # Problems per episode
+  problems_per_episode: 10    # Problems per episode (increased from 5 to 10 for better coverage)
   device: cuda                # Device (cuda or cpu)
 
 # Paths configuration

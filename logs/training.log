@@ -1,0 +1,1323 @@
+2025-10-30 14:24:25,527 - __main__ - INFO - ============================================================
+2025-10-30 14:24:25,527 - __main__ - INFO - Workflow Training Pipeline
+2025-10-30 14:24:25,528 - __main__ - INFO - ============================================================
+2025-10-30 14:24:25,528 - __main__ - INFO - Initializing WorkflowTrainer
+2025-10-30 14:24:25,528 - __main__ - INFO - Device: cuda
+2025-10-30 14:24:25,528 - __main__ - INFO - Initializing WorkflowEvaluator
+2025-10-30 14:24:25,528 - __main__ - INFO - Dataset info: {'dataset_type': 'AIME24', 'total_problems': 30, 'train_problems': 24, 'test_problems': 6, 'train_indices': ['0', '1', '2', '3', '4', '5', '8', '9', '11', '12', '13', '15', '16', '17', '18', '21', '22', '23', '24', '25', '26', '27', '28', '29'], 'test_indices': ['6', '7', '10', '14', '19', '20']}
+2025-10-30 14:24:25,528 - __main__ - INFO - Initializing MCTS Optimizer
+2025-10-30 14:24:26,194 - mcts.aflow_wrapper - INFO - Successfully imported AFlow Optimizer from /content/agentworkflow/AFlow
+2025-10-30 14:24:26,194 - __main__ - INFO - Initializing Qwen Policy and GRPO Trainer
+2025-10-30 14:24:26,195 - grpo.qwen_policy - INFO - Loading Qwen model: /root/models/Qwen2.5-7B-Instruct
+2025-10-30 14:24:36,297 - grpo.qwen_policy - INFO - LoRA applied. Trainable params: 20,185,088 / 7,635,801,600 (0.26%)
+2025-10-30 14:24:36,298 - grpo.qwen_policy - INFO - Qwen policy initialized on cuda
+2025-10-30 14:24:36,305 - grpo.grpo_trainer - INFO - Optimizer setup with LR: 1e-05
+2025-10-30 14:24:36,305 - grpo.grpo_trainer - INFO - GRPO Trainer initialized on cuda
+2025-10-30 14:24:36,305 - __main__ - INFO - WorkflowTrainer initialized successfully
+2025-10-30 14:24:36,305 - __main__ - INFO - Starting training: 3 epochs, 3 episodes per epoch
+2025-10-30 14:24:36,305 - __main__ - INFO - 
+============================================================
+2025-10-30 14:24:36,305 - __main__ - INFO - Epoch 1/3
+2025-10-30 14:24:36,306 - __main__ - INFO - ============================================================
+2025-10-30 14:24:36,306 - __main__ - INFO - 
+Episode 1/3
+2025-10-30 14:24:36,306 - __main__ - INFO -   Problem 1/10 (train idx: 11)
+2025-10-30 14:24:36,306 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 11
+2025-10-30 14:24:36,306 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:24:36,796 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:24:36,797 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:24:36,797 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:25:26,881 - mcts.mcts_optimizer - ERROR - Problem 11 not found
+2025-10-30 14:25:26,881 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:25:26,881 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_11_result.json
+2025-10-30 14:25:26,881 - __main__ - INFO -   Problem 2/10 (train idx: 16)
+2025-10-30 14:25:26,881 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 16
+2025-10-30 14:25:26,881 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:25:26,931 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:25:26,931 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:25:26,931 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:26:16,988 - mcts.mcts_optimizer - ERROR - Problem 16 not found
+2025-10-30 14:26:16,988 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:26:16,989 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_16_result.json
+2025-10-30 14:26:16,989 - __main__ - INFO -   Problem 3/10 (train idx: 20)
+2025-10-30 14:26:16,989 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 20
+2025-10-30 14:26:16,989 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:26:17,039 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:26:17,039 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:26:17,039 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:27:07,099 - mcts.mcts_optimizer - ERROR - Problem 20 not found
+2025-10-30 14:27:07,099 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:27:07,100 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_20_result.json
+2025-10-30 14:27:07,100 - __main__ - INFO -   Problem 4/10 (train idx: 14)
+2025-10-30 14:27:07,100 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 14
+2025-10-30 14:27:07,100 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:27:07,149 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:27:07,149 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:27:07,149 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:27:57,212 - mcts.mcts_optimizer - ERROR - Problem 14 not found
+2025-10-30 14:27:57,212 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:27:57,212 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_14_result.json
+2025-10-30 14:27:57,213 - __main__ - INFO -   Problem 5/10 (train idx: 13)
+2025-10-30 14:27:57,213 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 13
+2025-10-30 14:27:57,213 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:27:57,267 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:27:57,267 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:27:57,267 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:28:47,325 - mcts.mcts_optimizer - ERROR - Problem 13 not found
+2025-10-30 14:28:47,325 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:28:47,326 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_13_result.json
+2025-10-30 14:28:47,326 - __main__ - INFO -   Problem 6/10 (train idx: 15)
+2025-10-30 14:28:47,326 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 15
+2025-10-30 14:28:47,326 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:28:47,376 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:28:47,376 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:28:47,376 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:29:37,444 - mcts.mcts_optimizer - ERROR - Problem 15 not found
+2025-10-30 14:29:37,444 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:29:37,445 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_15_result.json
+2025-10-30 14:29:37,445 - __main__ - INFO -   Problem 7/10 (train idx: 0)
+2025-10-30 14:29:37,445 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 0
+2025-10-30 14:29:37,445 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:29:37,495 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:29:37,495 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:29:37,495 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:30:36,245 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:30:44,694 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:30:56,688 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:31:01,647 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:31:01,681 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 14:31:01,682 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_0_result.json
+2025-10-30 14:31:01,682 - __main__ - INFO -   Problem 8/10 (train idx: 21)
+2025-10-30 14:31:01,682 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 21
+2025-10-30 14:31:01,682 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:31:01,734 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:31:01,735 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:31:01,735 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:31:51,796 - mcts.mcts_optimizer - ERROR - Problem 21 not found
+2025-10-30 14:31:51,796 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:31:51,796 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_21_result.json
+2025-10-30 14:31:51,796 - __main__ - INFO -   Problem 9/10 (train idx: 2)
+2025-10-30 14:31:51,796 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 2
+2025-10-30 14:31:51,796 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:31:51,847 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:31:51,847 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:31:51,847 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:32:51,092 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:33:00,598 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:33:11,939 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:33:16,921 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:33:16,929 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 14:33:16,930 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_2_result.json
+2025-10-30 14:33:16,930 - __main__ - INFO -   Problem 10/10 (train idx: 3)
+2025-10-30 14:33:16,930 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 3
+2025-10-30 14:33:16,930 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:33:16,982 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:33:16,983 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:33:16,983 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:34:25,918 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:34:35,119 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:34:46,820 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:34:51,791 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:34:51,793 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 14:34:51,793 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_3_result.json
+2025-10-30 14:34:51,793 - __main__ - INFO - 
+Episode 2/3
+2025-10-30 14:34:51,793 - __main__ - INFO -   Problem 1/10 (train idx: 5)
+2025-10-30 14:34:51,793 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 5
+2025-10-30 14:34:51,793 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:34:51,845 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:34:51,846 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:34:51,846 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:35:48,627 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:35:56,458 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:36:01,965 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:36:09,018 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:36:09,021 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 14:36:09,021 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_5_result.json
+2025-10-30 14:36:09,021 - __main__ - INFO -   Problem 2/10 (train idx: 11)
+2025-10-30 14:36:09,021 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 11
+2025-10-30 14:36:09,021 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:36:09,073 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:36:09,074 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:36:09,074 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:36:59,133 - mcts.mcts_optimizer - ERROR - Problem 11 not found
+2025-10-30 14:36:59,133 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:36:59,134 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_11_result.json
+2025-10-30 14:36:59,134 - __main__ - INFO -   Problem 3/10 (train idx: 6)
+2025-10-30 14:36:59,134 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 6
+2025-10-30 14:36:59,134 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:36:59,184 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:36:59,185 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:36:59,185 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:37:49,249 - mcts.mcts_optimizer - ERROR - Problem 6 not found
+2025-10-30 14:37:49,249 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:37:49,249 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_6_result.json
+2025-10-30 14:37:49,249 - __main__ - INFO -   Problem 4/10 (train idx: 12)
+2025-10-30 14:37:49,249 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 12
+2025-10-30 14:37:49,250 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:37:49,301 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:37:49,301 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:37:49,301 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:38:39,360 - mcts.mcts_optimizer - ERROR - Problem 12 not found
+2025-10-30 14:38:39,360 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:38:39,360 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_12_result.json
+2025-10-30 14:38:39,360 - __main__ - INFO -   Problem 5/10 (train idx: 9)
+2025-10-30 14:38:39,360 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 9
+2025-10-30 14:38:39,360 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:38:39,411 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:38:39,411 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:38:39,411 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:39:29,475 - mcts.mcts_optimizer - ERROR - Problem 9 not found
+2025-10-30 14:39:29,475 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:39:29,475 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_9_result.json
+2025-10-30 14:39:29,475 - __main__ - INFO -   Problem 6/10 (train idx: 3)
+2025-10-30 14:39:29,476 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 3
+2025-10-30 14:39:29,476 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:39:29,527 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:39:29,528 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:39:29,528 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:40:36,721 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:40:46,742 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:41:07,142 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:41:12,252 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:41:12,263 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 14:41:12,263 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_3_result.json
+2025-10-30 14:41:12,263 - __main__ - INFO -   Problem 7/10 (train idx: 16)
+2025-10-30 14:41:12,263 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 16
+2025-10-30 14:41:12,263 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:41:12,316 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:41:12,317 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:41:12,317 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:42:02,376 - mcts.mcts_optimizer - ERROR - Problem 16 not found
+2025-10-30 14:42:02,376 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:42:02,376 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_16_result.json
+2025-10-30 14:42:02,376 - __main__ - INFO -   Problem 8/10 (train idx: 19)
+2025-10-30 14:42:02,376 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 19
+2025-10-30 14:42:02,376 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:42:02,427 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:42:02,427 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:42:02,427 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:42:52,491 - mcts.mcts_optimizer - ERROR - Problem 19 not found
+2025-10-30 14:42:52,491 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:42:52,492 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_19_result.json
+2025-10-30 14:42:52,492 - __main__ - INFO -   Problem 9/10 (train idx: 4)
+2025-10-30 14:42:52,492 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 4
+2025-10-30 14:42:52,492 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:42:52,544 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:42:52,544 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:42:52,544 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:43:47,984 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:43:53,152 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:43:57,657 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:44:04,538 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:44:04,540 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 14:44:04,541 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_4_result.json
+2025-10-30 14:44:04,541 - __main__ - INFO -   Problem 10/10 (train idx: 17)
+2025-10-30 14:44:04,541 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 17
+2025-10-30 14:44:04,541 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:44:04,593 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:44:04,594 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:44:04,594 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:44:54,652 - mcts.mcts_optimizer - ERROR - Problem 17 not found
+2025-10-30 14:44:54,653 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:44:54,653 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_17_result.json
+2025-10-30 14:44:54,653 - __main__ - INFO - 
+Episode 3/3
+2025-10-30 14:44:54,653 - __main__ - INFO -   Problem 1/10 (train idx: 21)
+2025-10-30 14:44:54,653 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 21
+2025-10-30 14:44:54,653 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:44:54,704 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:44:54,704 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:44:54,704 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:45:44,768 - mcts.mcts_optimizer - ERROR - Problem 21 not found
+2025-10-30 14:45:44,768 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:45:44,769 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_21_result.json
+2025-10-30 14:45:44,769 - __main__ - INFO -   Problem 2/10 (train idx: 16)
+2025-10-30 14:45:44,769 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 16
+2025-10-30 14:45:44,769 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:45:44,836 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:45:44,837 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:45:44,837 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:46:34,896 - mcts.mcts_optimizer - ERROR - Problem 16 not found
+2025-10-30 14:46:34,896 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:46:34,897 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_16_result.json
+2025-10-30 14:46:34,897 - __main__ - INFO -   Problem 3/10 (train idx: 0)
+2025-10-30 14:46:34,897 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 0
+2025-10-30 14:46:34,897 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:46:34,947 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:46:34,948 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:46:34,948 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:47:31,451 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:47:31,470 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-157' coro=<AsyncClient.aclose() done, defined at /usr/local/lib/python3.12/dist-packages/httpx/_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_transports/default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_backends/anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/streams/tls.py", line 216, in aclose
+    await self.transport_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/_backends/_asyncio.py", line 1314, in aclose
+    self._transport.close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 1213, in close
+    super().close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 875, in close
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 799, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 545, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+2025-10-30 14:47:31,474 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-158' coro=<AsyncClient.aclose() done, defined at /usr/local/lib/python3.12/dist-packages/httpx/_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_transports/default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_backends/anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/streams/tls.py", line 216, in aclose
+    await self.transport_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/_backends/_asyncio.py", line 1314, in aclose
+    self._transport.close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 1213, in close
+    super().close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 875, in close
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 799, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 545, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+2025-10-30 14:47:31,476 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-159' coro=<AsyncClient.aclose() done, defined at /usr/local/lib/python3.12/dist-packages/httpx/_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_transports/default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_backends/anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/streams/tls.py", line 216, in aclose
+    await self.transport_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/_backends/_asyncio.py", line 1314, in aclose
+    self._transport.close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 1213, in close
+    super().close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 875, in close
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 799, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 545, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+2025-10-30 14:47:31,479 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-161' coro=<AsyncClient.aclose() done, defined at /usr/local/lib/python3.12/dist-packages/httpx/_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_transports/default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_backends/anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/streams/tls.py", line 216, in aclose
+    await self.transport_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/_backends/_asyncio.py", line 1314, in aclose
+    self._transport.close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 1213, in close
+    super().close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 875, in close
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 799, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 545, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+2025-10-30 14:47:31,483 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-163' coro=<AsyncClient.aclose() done, defined at /usr/local/lib/python3.12/dist-packages/httpx/_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_transports/default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_backends/anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/streams/tls.py", line 216, in aclose
+    await self.transport_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/_backends/_asyncio.py", line 1314, in aclose
+    self._transport.close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 1213, in close
+    super().close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 875, in close
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 799, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 545, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+2025-10-30 14:47:40,396 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:47:48,171 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:47:53,323 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:47:53,343 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 14:47:53,344 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_0_result.json
+2025-10-30 14:47:53,344 - __main__ - INFO -   Problem 4/10 (train idx: 6)
+2025-10-30 14:47:53,344 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 6
+2025-10-30 14:47:53,344 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:47:53,397 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:47:53,397 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:47:53,397 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:48:43,456 - mcts.mcts_optimizer - ERROR - Problem 6 not found
+2025-10-30 14:48:43,456 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:48:43,456 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_6_result.json
+2025-10-30 14:48:43,456 - __main__ - INFO -   Problem 5/10 (train idx: 5)
+2025-10-30 14:48:43,456 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 5
+2025-10-30 14:48:43,456 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:48:43,508 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:48:43,508 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:48:43,508 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:49:40,473 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:49:46,659 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:49:52,910 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:50:00,360 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:50:00,364 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 14:50:00,365 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_5_result.json
+2025-10-30 14:50:00,365 - __main__ - INFO -   Problem 6/10 (train idx: 2)
+2025-10-30 14:50:00,365 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 2
+2025-10-30 14:50:00,365 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:50:00,416 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:50:00,416 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:50:00,416 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:51:00,148 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:51:08,273 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:51:17,347 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:51:21,817 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:51:21,819 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 14:51:21,820 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_2_result.json
+2025-10-30 14:51:21,820 - __main__ - INFO -   Problem 7/10 (train idx: 18)
+2025-10-30 14:51:21,820 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 18
+2025-10-30 14:51:21,820 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:51:21,872 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:51:21,873 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:51:21,873 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:52:11,934 - mcts.mcts_optimizer - ERROR - Problem 18 not found
+2025-10-30 14:52:11,934 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:52:11,934 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_18_result.json
+2025-10-30 14:52:11,934 - __main__ - INFO -   Problem 8/10 (train idx: 22)
+2025-10-30 14:52:11,934 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 22
+2025-10-30 14:52:11,934 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:52:11,986 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:52:11,986 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:52:11,986 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:53:02,050 - mcts.mcts_optimizer - ERROR - Problem 22 not found
+2025-10-30 14:53:02,050 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:53:02,050 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_22_result.json
+2025-10-30 14:53:02,050 - __main__ - INFO -   Problem 9/10 (train idx: 19)
+2025-10-30 14:53:02,050 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 19
+2025-10-30 14:53:02,050 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:53:02,103 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:53:02,103 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:53:02,103 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:53:52,162 - mcts.mcts_optimizer - ERROR - Problem 19 not found
+2025-10-30 14:53:52,162 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:53:52,162 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_19_result.json
+2025-10-30 14:53:52,162 - __main__ - INFO -   Problem 10/10 (train idx: 12)
+2025-10-30 14:53:52,162 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 12
+2025-10-30 14:53:52,162 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:53:52,213 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:53:52,213 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:53:52,213 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:54:42,280 - mcts.mcts_optimizer - ERROR - Problem 12 not found
+2025-10-30 14:54:42,280 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:54:42,280 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_12_result.json
+2025-10-30 14:54:42,280 - __main__ - INFO - 
+Training GRPO on 9 trajectories
+2025-10-30 14:54:42,280 - __main__ - INFO - Training GRPO on 9 trajectories
+2025-10-30 14:54:42,280 - grpo.grpo_trainer - INFO - Starting GRPO training on 9 trajectories
+2025-10-30 14:54:42,281 - grpo.grpo_trainer - INFO - Epoch 1/3
+2025-10-30 14:54:43,737 - grpo.grpo_trainer - INFO - Epoch 0 complete: Loss=-0.0105
+2025-10-30 14:54:43,738 - grpo.grpo_trainer - INFO - Epoch 2/3
+2025-10-30 14:54:44,490 - grpo.grpo_trainer - INFO - Epoch 1 complete: Loss=-0.0249
+2025-10-30 14:54:44,492 - grpo.grpo_trainer - INFO - Epoch 3/3
+2025-10-30 14:54:45,277 - grpo.grpo_trainer - INFO - Epoch 2 complete: Loss=-0.0437
+2025-10-30 14:54:45,279 - grpo.grpo_trainer - INFO - Training complete. Total steps: 9
+2025-10-30 14:54:45,280 - mcts.mcts_optimizer - INFO - Checkpoint saved to ./checkpoints/epoch_0/mcts/checkpoint.json
+2025-10-30 14:54:45,457 - grpo.qwen_policy - INFO - Checkpoint saved to ./checkpoints/epoch_0/grpo
+2025-10-30 14:54:45,457 - grpo.grpo_trainer - INFO - Checkpoint saved to ./checkpoints/epoch_0/grpo
+2025-10-30 14:54:45,598 - grpo.qwen_policy - INFO - Checkpoint saved to ./checkpoints/epoch_0/policy
+2025-10-30 14:54:45,598 - __main__ - INFO - Checkpoint saved to ./checkpoints/epoch_0
+2025-10-30 14:54:46,094 - __main__ - INFO - Backup saved to /content/drive/MyDrive/agentworkflow/checkpoints/epoch_0
+2025-10-30 14:54:46,094 - __main__ - INFO - 
+============================================================
+2025-10-30 14:54:46,094 - __main__ - INFO - Epoch 2/3
+2025-10-30 14:54:46,094 - __main__ - INFO - ============================================================
+2025-10-30 14:54:46,094 - __main__ - INFO - 
+Episode 1/3
+2025-10-30 14:54:46,094 - __main__ - INFO -   Problem 1/10 (train idx: 8)
+2025-10-30 14:54:46,094 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 8
+2025-10-30 14:54:46,094 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:54:46,148 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:54:46,149 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:54:46,149 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:55:36,209 - mcts.mcts_optimizer - ERROR - Problem 8 not found
+2025-10-30 14:55:36,209 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:55:36,209 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_8_result.json
+2025-10-30 14:55:36,209 - __main__ - INFO -   Problem 2/10 (train idx: 3)
+2025-10-30 14:55:36,209 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 3
+2025-10-30 14:55:36,209 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:55:36,261 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:55:36,261 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:55:36,261 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:56:36,344 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:56:45,666 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:56:57,106 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:57:00,886 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 14:57:00,899 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 14:57:00,900 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_3_result.json
+2025-10-30 14:57:00,900 - __main__ - INFO -   Problem 3/10 (train idx: 21)
+2025-10-30 14:57:00,900 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 21
+2025-10-30 14:57:00,900 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:57:00,953 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:57:00,953 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:57:00,953 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:57:31,013 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-233' coro=<AsyncClient.aclose() done, defined at /usr/local/lib/python3.12/dist-packages/httpx/_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_transports/default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_backends/anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/streams/tls.py", line 216, in aclose
+    await self.transport_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/_backends/_asyncio.py", line 1314, in aclose
+    self._transport.close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 1213, in close
+    super().close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 875, in close
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 799, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 545, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+2025-10-30 14:57:51,022 - mcts.mcts_optimizer - ERROR - Problem 21 not found
+2025-10-30 14:57:51,022 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:57:51,022 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_21_result.json
+2025-10-30 14:57:51,022 - __main__ - INFO -   Problem 4/10 (train idx: 19)
+2025-10-30 14:57:51,022 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 19
+2025-10-30 14:57:51,022 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:57:51,078 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:57:51,078 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:57:51,078 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:58:41,137 - mcts.mcts_optimizer - ERROR - Problem 19 not found
+2025-10-30 14:58:41,137 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:58:41,137 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_19_result.json
+2025-10-30 14:58:41,137 - __main__ - INFO -   Problem 5/10 (train idx: 16)
+2025-10-30 14:58:41,137 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 16
+2025-10-30 14:58:41,138 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:58:41,189 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:58:41,189 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:58:41,189 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 14:59:31,255 - mcts.mcts_optimizer - ERROR - Problem 16 not found
+2025-10-30 14:59:31,255 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 14:59:31,255 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_16_result.json
+2025-10-30 14:59:31,255 - __main__ - INFO -   Problem 6/10 (train idx: 10)
+2025-10-30 14:59:31,255 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 10
+2025-10-30 14:59:31,255 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 14:59:31,308 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 14:59:31,308 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 14:59:31,308 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:00:21,367 - mcts.mcts_optimizer - ERROR - Problem 10 not found
+2025-10-30 15:00:21,367 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:00:21,368 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_10_result.json
+2025-10-30 15:00:21,368 - __main__ - INFO -   Problem 7/10 (train idx: 1)
+2025-10-30 15:00:21,368 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 1
+2025-10-30 15:00:21,368 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:00:21,419 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:00:21,419 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:00:21,419 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:01:15,432 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:01:19,860 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:01:23,821 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:01:29,781 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:01:29,787 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 15:01:29,787 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_1_result.json
+2025-10-30 15:01:29,788 - __main__ - INFO -   Problem 8/10 (train idx: 4)
+2025-10-30 15:01:29,788 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 4
+2025-10-30 15:01:29,788 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:01:29,839 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:01:29,839 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:01:29,839 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:02:29,630 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:02:34,775 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:02:39,744 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:02:44,268 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:02:44,270 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 15:02:44,271 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_4_result.json
+2025-10-30 15:02:44,271 - __main__ - INFO -   Problem 9/10 (train idx: 18)
+2025-10-30 15:02:44,271 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 18
+2025-10-30 15:02:44,271 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:02:44,323 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:02:44,324 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:02:44,324 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:03:34,382 - mcts.mcts_optimizer - ERROR - Problem 18 not found
+2025-10-30 15:03:34,382 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:03:34,382 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_18_result.json
+2025-10-30 15:03:34,382 - __main__ - INFO -   Problem 10/10 (train idx: 0)
+2025-10-30 15:03:34,382 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 0
+2025-10-30 15:03:34,382 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:03:34,433 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:03:34,433 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:03:34,433 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:04:31,229 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:04:40,368 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:04:48,618 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:04:54,263 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:04:54,269 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 15:04:54,269 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_0_result.json
+2025-10-30 15:04:54,269 - __main__ - INFO - 
+Episode 2/3
+2025-10-30 15:04:54,269 - __main__ - INFO -   Problem 1/10 (train idx: 19)
+2025-10-30 15:04:54,270 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 19
+2025-10-30 15:04:54,270 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:04:54,321 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:04:54,321 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:04:54,321 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:05:44,379 - mcts.mcts_optimizer - ERROR - Problem 19 not found
+2025-10-30 15:05:44,379 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:05:44,379 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_19_result.json
+2025-10-30 15:05:44,379 - __main__ - INFO -   Problem 2/10 (train idx: 23)
+2025-10-30 15:05:44,379 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 23
+2025-10-30 15:05:44,379 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:05:44,430 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:05:44,430 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:05:44,430 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:06:34,496 - mcts.mcts_optimizer - ERROR - Problem 23 not found
+2025-10-30 15:06:34,496 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:06:34,496 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_23_result.json
+2025-10-30 15:06:34,496 - __main__ - INFO -   Problem 3/10 (train idx: 14)
+2025-10-30 15:06:34,496 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 14
+2025-10-30 15:06:34,496 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:06:34,548 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:06:34,548 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:06:34,548 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:07:24,606 - mcts.mcts_optimizer - ERROR - Problem 14 not found
+2025-10-30 15:07:24,606 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:07:24,607 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_14_result.json
+2025-10-30 15:07:24,607 - __main__ - INFO -   Problem 4/10 (train idx: 22)
+2025-10-30 15:07:24,607 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 22
+2025-10-30 15:07:24,607 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:07:24,657 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:07:24,657 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:07:24,657 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:08:14,721 - mcts.mcts_optimizer - ERROR - Problem 22 not found
+2025-10-30 15:08:14,721 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:08:14,722 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_22_result.json
+2025-10-30 15:08:14,722 - __main__ - INFO -   Problem 5/10 (train idx: 13)
+2025-10-30 15:08:14,722 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 13
+2025-10-30 15:08:14,722 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:08:14,776 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:08:14,776 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:08:14,776 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:09:04,835 - mcts.mcts_optimizer - ERROR - Problem 13 not found
+2025-10-30 15:09:04,835 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:09:04,836 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_13_result.json
+2025-10-30 15:09:04,836 - __main__ - INFO -   Problem 6/10 (train idx: 20)
+2025-10-30 15:09:04,836 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 20
+2025-10-30 15:09:04,836 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:09:04,887 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:09:04,887 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:09:04,887 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:09:54,949 - mcts.mcts_optimizer - ERROR - Problem 20 not found
+2025-10-30 15:09:54,949 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:09:54,949 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_20_result.json
+2025-10-30 15:09:54,949 - __main__ - INFO -   Problem 7/10 (train idx: 9)
+2025-10-30 15:09:54,949 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 9
+2025-10-30 15:09:54,949 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:09:55,001 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:09:55,001 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:09:55,001 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:10:45,060 - mcts.mcts_optimizer - ERROR - Problem 9 not found
+2025-10-30 15:10:45,060 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:10:45,060 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_9_result.json
+2025-10-30 15:10:45,060 - __main__ - INFO -   Problem 8/10 (train idx: 4)
+2025-10-30 15:10:45,060 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 4
+2025-10-30 15:10:45,060 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:10:45,111 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:10:45,111 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:10:45,111 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:11:39,505 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:11:44,651 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:11:49,300 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:11:54,105 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:11:54,115 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 15:11:54,115 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_4_result.json
+2025-10-30 15:11:54,115 - __main__ - INFO -   Problem 9/10 (train idx: 18)
+2025-10-30 15:11:54,115 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 18
+2025-10-30 15:11:54,116 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:11:54,166 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:11:54,166 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:11:54,166 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:12:44,224 - mcts.mcts_optimizer - ERROR - Problem 18 not found
+2025-10-30 15:12:44,224 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:12:44,224 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_18_result.json
+2025-10-30 15:12:44,225 - __main__ - INFO -   Problem 10/10 (train idx: 17)
+2025-10-30 15:12:44,225 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 17
+2025-10-30 15:12:44,225 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:12:44,275 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:12:44,275 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:12:44,275 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:13:34,363 - mcts.mcts_optimizer - ERROR - Problem 17 not found
+2025-10-30 15:13:34,363 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:13:34,363 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_17_result.json
+2025-10-30 15:13:34,364 - __main__ - INFO - 
+Episode 3/3
+2025-10-30 15:13:34,364 - __main__ - INFO -   Problem 1/10 (train idx: 0)
+2025-10-30 15:13:34,364 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 0
+2025-10-30 15:13:34,364 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:13:34,416 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:13:34,416 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:13:34,417 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:14:32,146 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:14:39,369 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:14:46,058 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:14:51,061 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:14:51,065 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 15:14:51,065 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_0_result.json
+2025-10-30 15:14:51,065 - __main__ - INFO -   Problem 2/10 (train idx: 6)
+2025-10-30 15:14:51,065 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 6
+2025-10-30 15:14:51,065 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:14:51,119 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:14:51,120 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:14:51,120 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:15:41,179 - mcts.mcts_optimizer - ERROR - Problem 6 not found
+2025-10-30 15:15:41,179 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:15:41,180 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_6_result.json
+2025-10-30 15:15:41,180 - __main__ - INFO -   Problem 3/10 (train idx: 12)
+2025-10-30 15:15:41,180 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 12
+2025-10-30 15:15:41,180 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:15:41,231 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:15:41,231 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:15:41,231 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:16:31,297 - mcts.mcts_optimizer - ERROR - Problem 12 not found
+2025-10-30 15:16:31,297 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:16:31,297 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_12_result.json
+2025-10-30 15:16:31,298 - __main__ - INFO -   Problem 4/10 (train idx: 5)
+2025-10-30 15:16:31,298 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 5
+2025-10-30 15:16:31,298 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:16:31,350 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:16:31,351 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:16:31,351 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:17:27,704 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:17:32,427 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:17:40,549 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:17:49,096 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:17:49,101 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 15:17:49,102 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_5_result.json
+2025-10-30 15:17:49,102 - __main__ - INFO -   Problem 5/10 (train idx: 10)
+2025-10-30 15:17:49,102 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 10
+2025-10-30 15:17:49,102 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:17:49,155 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:17:49,156 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:17:49,156 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:18:39,215 - mcts.mcts_optimizer - ERROR - Problem 10 not found
+2025-10-30 15:18:39,215 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:18:39,215 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_10_result.json
+2025-10-30 15:18:39,215 - __main__ - INFO -   Problem 6/10 (train idx: 15)
+2025-10-30 15:18:39,215 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 15
+2025-10-30 15:18:39,215 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:18:39,266 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:18:39,266 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:18:39,266 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:19:29,330 - mcts.mcts_optimizer - ERROR - Problem 15 not found
+2025-10-30 15:19:29,330 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:19:29,331 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_15_result.json
+2025-10-30 15:19:29,331 - __main__ - INFO -   Problem 7/10 (train idx: 2)
+2025-10-30 15:19:29,331 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 2
+2025-10-30 15:19:29,331 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:19:29,384 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:19:29,384 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:19:29,384 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:20:29,303 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:20:41,020 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:20:51,336 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:20:54,782 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:20:54,788 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 15:20:54,789 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_2_result.json
+2025-10-30 15:20:54,789 - __main__ - INFO -   Problem 8/10 (train idx: 8)
+2025-10-30 15:20:54,789 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 8
+2025-10-30 15:20:54,789 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:20:54,842 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:20:54,843 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:20:54,843 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:21:44,901 - mcts.mcts_optimizer - ERROR - Problem 8 not found
+2025-10-30 15:21:44,901 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:21:44,902 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_8_result.json
+2025-10-30 15:21:44,902 - __main__ - INFO -   Problem 9/10 (train idx: 1)
+2025-10-30 15:21:44,902 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 1
+2025-10-30 15:21:44,902 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:21:44,952 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:21:44,952 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:21:44,952 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:22:39,977 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:22:44,433 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:22:48,735 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:22:53,295 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:22:53,297 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 15:22:53,297 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_1_result.json
+2025-10-30 15:22:53,297 - __main__ - INFO -   Problem 10/10 (train idx: 20)
+2025-10-30 15:22:53,297 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 20
+2025-10-30 15:22:53,297 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:22:53,348 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:22:53,349 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:22:53,349 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:23:43,407 - mcts.mcts_optimizer - ERROR - Problem 20 not found
+2025-10-30 15:23:43,407 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:23:43,408 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_20_result.json
+2025-10-30 15:23:43,408 - __main__ - INFO - 
+Training GRPO on 9 trajectories
+2025-10-30 15:23:43,408 - __main__ - INFO - Training GRPO on 9 trajectories
+2025-10-30 15:23:43,408 - grpo.grpo_trainer - INFO - Starting GRPO training on 9 trajectories
+2025-10-30 15:23:43,408 - grpo.grpo_trainer - INFO - Epoch 1/3
+2025-10-30 15:23:44,239 - grpo.grpo_trainer - INFO - Epoch 0 complete: Loss=-0.0900
+2025-10-30 15:23:44,240 - grpo.grpo_trainer - INFO - Epoch 2/3
+2025-10-30 15:23:45,004 - grpo.grpo_trainer - INFO - Epoch 1 complete: Loss=-0.1120
+2025-10-30 15:23:45,004 - grpo.grpo_trainer - INFO - Epoch 3/3
+2025-10-30 15:23:45,753 - grpo.grpo_trainer - INFO - Epoch 2 complete: Loss=-0.1157
+2025-10-30 15:23:45,754 - grpo.grpo_trainer - INFO - Training complete. Total steps: 18
+2025-10-30 15:23:45,756 - mcts.mcts_optimizer - INFO - Checkpoint saved to ./checkpoints/epoch_1/mcts/checkpoint.json
+2025-10-30 15:23:45,907 - grpo.qwen_policy - INFO - Checkpoint saved to ./checkpoints/epoch_1/grpo
+2025-10-30 15:23:45,908 - grpo.grpo_trainer - INFO - Checkpoint saved to ./checkpoints/epoch_1/grpo
+2025-10-30 15:23:46,060 - grpo.qwen_policy - INFO - Checkpoint saved to ./checkpoints/epoch_1/policy
+2025-10-30 15:23:46,060 - __main__ - INFO - Checkpoint saved to ./checkpoints/epoch_1
+2025-10-30 15:23:46,444 - __main__ - INFO - Backup saved to /content/drive/MyDrive/agentworkflow/checkpoints/epoch_1
+2025-10-30 15:23:46,444 - __main__ - INFO - 
+============================================================
+2025-10-30 15:23:46,444 - __main__ - INFO - Epoch 3/3
+2025-10-30 15:23:46,444 - __main__ - INFO - ============================================================
+2025-10-30 15:23:46,444 - __main__ - INFO - 
+Episode 1/3
+2025-10-30 15:23:46,444 - __main__ - INFO -   Problem 1/10 (train idx: 6)
+2025-10-30 15:23:46,444 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 6
+2025-10-30 15:23:46,444 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:23:46,504 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:23:46,505 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:23:46,505 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:24:36,566 - mcts.mcts_optimizer - ERROR - Problem 6 not found
+2025-10-30 15:24:36,566 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:24:36,566 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_6_result.json
+2025-10-30 15:24:36,566 - __main__ - INFO -   Problem 2/10 (train idx: 11)
+2025-10-30 15:24:36,566 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 11
+2025-10-30 15:24:36,566 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:24:36,618 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:24:36,618 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:24:36,618 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:25:26,685 - mcts.mcts_optimizer - ERROR - Problem 11 not found
+2025-10-30 15:25:26,685 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:25:26,685 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_11_result.json
+2025-10-30 15:25:26,685 - __main__ - INFO -   Problem 3/10 (train idx: 4)
+2025-10-30 15:25:26,685 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 4
+2025-10-30 15:25:26,685 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:25:26,738 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:25:26,738 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:25:26,738 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:26:21,598 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:26:26,845 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:26:34,022 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:26:37,970 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:26:37,977 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 15:26:37,977 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_4_result.json
+2025-10-30 15:26:37,977 - __main__ - INFO -   Problem 4/10 (train idx: 9)
+2025-10-30 15:26:37,977 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 9
+2025-10-30 15:26:37,977 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:26:38,032 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:26:38,032 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:26:38,032 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:27:28,092 - mcts.mcts_optimizer - ERROR - Problem 9 not found
+2025-10-30 15:27:28,092 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:27:28,092 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_9_result.json
+2025-10-30 15:27:28,092 - __main__ - INFO -   Problem 5/10 (train idx: 22)
+2025-10-30 15:27:28,093 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 22
+2025-10-30 15:27:28,093 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:27:28,144 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:27:28,144 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:27:28,144 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:27:58,202 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-458' coro=<AsyncClient.aclose() done, defined at /usr/local/lib/python3.12/dist-packages/httpx/_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_transports/default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_backends/anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/streams/tls.py", line 216, in aclose
+    await self.transport_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/_backends/_asyncio.py", line 1314, in aclose
+    self._transport.close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 1213, in close
+    super().close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 875, in close
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 799, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 545, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+2025-10-30 15:28:18,213 - mcts.mcts_optimizer - ERROR - Problem 22 not found
+2025-10-30 15:28:18,213 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:28:18,213 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_22_result.json
+2025-10-30 15:28:18,213 - __main__ - INFO -   Problem 6/10 (train idx: 18)
+2025-10-30 15:28:18,213 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 18
+2025-10-30 15:28:18,213 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:28:18,266 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:28:18,266 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:28:18,266 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:29:08,325 - mcts.mcts_optimizer - ERROR - Problem 18 not found
+2025-10-30 15:29:08,325 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:29:08,326 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_18_result.json
+2025-10-30 15:29:08,326 - __main__ - INFO -   Problem 7/10 (train idx: 3)
+2025-10-30 15:29:08,326 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 3
+2025-10-30 15:29:08,326 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:29:08,377 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:29:08,377 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:29:08,377 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:30:13,718 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:30:24,659 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:30:36,377 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:30:43,165 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:30:43,171 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 15:30:43,172 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_3_result.json
+2025-10-30 15:30:43,172 - __main__ - INFO -   Problem 8/10 (train idx: 21)
+2025-10-30 15:30:43,172 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 21
+2025-10-30 15:30:43,172 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:30:43,243 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:30:43,243 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:30:43,243 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:31:33,302 - mcts.mcts_optimizer - ERROR - Problem 21 not found
+2025-10-30 15:31:33,302 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:31:33,303 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_21_result.json
+2025-10-30 15:31:33,303 - __main__ - INFO -   Problem 9/10 (train idx: 10)
+2025-10-30 15:31:33,303 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 10
+2025-10-30 15:31:33,303 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:31:33,354 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:31:33,354 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:31:33,354 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:32:23,419 - mcts.mcts_optimizer - ERROR - Problem 10 not found
+2025-10-30 15:32:23,419 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:32:23,420 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_10_result.json
+2025-10-30 15:32:23,420 - __main__ - INFO -   Problem 10/10 (train idx: 8)
+2025-10-30 15:32:23,420 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 8
+2025-10-30 15:32:23,420 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:32:23,472 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:32:23,472 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:32:23,472 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:33:13,533 - mcts.mcts_optimizer - ERROR - Problem 8 not found
+2025-10-30 15:33:13,534 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:33:13,534 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_8_result.json
+2025-10-30 15:33:13,534 - __main__ - INFO - 
+Episode 2/3
+2025-10-30 15:33:13,534 - __main__ - INFO -   Problem 1/10 (train idx: 2)
+2025-10-30 15:33:13,534 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 2
+2025-10-30 15:33:13,534 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:33:13,585 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:33:13,586 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:33:13,586 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:34:12,421 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:34:21,908 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:34:32,381 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:34:37,718 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:34:37,728 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 15:34:37,729 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_2_result.json
+2025-10-30 15:34:37,729 - __main__ - INFO -   Problem 2/10 (train idx: 22)
+2025-10-30 15:34:37,729 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 22
+2025-10-30 15:34:37,729 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:34:37,783 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:34:37,784 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:34:37,784 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:35:27,842 - mcts.mcts_optimizer - ERROR - Problem 22 not found
+2025-10-30 15:35:27,842 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:35:27,843 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_22_result.json
+2025-10-30 15:35:27,843 - __main__ - INFO -   Problem 3/10 (train idx: 11)
+2025-10-30 15:35:27,843 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 11
+2025-10-30 15:35:27,843 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:35:27,894 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:35:27,894 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:35:27,894 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:36:17,959 - mcts.mcts_optimizer - ERROR - Problem 11 not found
+2025-10-30 15:36:17,959 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:36:17,959 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_11_result.json
+2025-10-30 15:36:17,959 - __main__ - INFO -   Problem 4/10 (train idx: 4)
+2025-10-30 15:36:17,959 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 4
+2025-10-30 15:36:17,959 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:36:18,011 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:36:18,011 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:36:18,011 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:37:14,572 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:37:21,027 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:37:25,403 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:37:29,410 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:37:29,421 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 15:37:29,422 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_4_result.json
+2025-10-30 15:37:29,422 - __main__ - INFO -   Problem 5/10 (train idx: 0)
+2025-10-30 15:37:29,422 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 0
+2025-10-30 15:37:29,422 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:37:29,474 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:37:29,475 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:37:29,475 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:38:32,075 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:38:39,119 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:38:47,644 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:38:52,794 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:38:52,798 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 15:38:52,798 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_0_result.json
+2025-10-30 15:38:52,798 - __main__ - INFO -   Problem 6/10 (train idx: 20)
+2025-10-30 15:38:52,798 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 20
+2025-10-30 15:38:52,798 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:38:52,851 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:38:52,851 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:38:52,851 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:39:42,910 - mcts.mcts_optimizer - ERROR - Problem 20 not found
+2025-10-30 15:39:42,910 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:39:42,910 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_20_result.json
+2025-10-30 15:39:42,910 - __main__ - INFO -   Problem 7/10 (train idx: 15)
+2025-10-30 15:39:42,910 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 15
+2025-10-30 15:39:42,910 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:39:42,962 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:39:42,962 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:39:42,962 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:40:33,026 - mcts.mcts_optimizer - ERROR - Problem 15 not found
+2025-10-30 15:40:33,026 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:40:33,026 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_15_result.json
+2025-10-30 15:40:33,027 - __main__ - INFO -   Problem 8/10 (train idx: 16)
+2025-10-30 15:40:33,027 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 16
+2025-10-30 15:40:33,027 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:40:33,079 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:40:33,079 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:40:33,079 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:41:23,137 - mcts.mcts_optimizer - ERROR - Problem 16 not found
+2025-10-30 15:41:23,138 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:41:23,138 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_16_result.json
+2025-10-30 15:41:23,138 - __main__ - INFO -   Problem 9/10 (train idx: 23)
+2025-10-30 15:41:23,138 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 23
+2025-10-30 15:41:23,138 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:41:23,189 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:41:23,189 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:41:23,189 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:42:13,254 - mcts.mcts_optimizer - ERROR - Problem 23 not found
+2025-10-30 15:42:13,254 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:42:13,254 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_23_result.json
+2025-10-30 15:42:13,254 - __main__ - INFO -   Problem 10/10 (train idx: 6)
+2025-10-30 15:42:13,254 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 6
+2025-10-30 15:42:13,254 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:42:13,307 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:42:13,307 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:42:13,307 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:43:03,365 - mcts.mcts_optimizer - ERROR - Problem 6 not found
+2025-10-30 15:43:03,366 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:43:03,366 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_6_result.json
+2025-10-30 15:43:03,366 - __main__ - INFO - 
+Episode 3/3
+2025-10-30 15:43:03,366 - __main__ - INFO -   Problem 1/10 (train idx: 19)
+2025-10-30 15:43:03,366 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 19
+2025-10-30 15:43:03,366 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:43:03,417 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:43:03,417 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:43:03,417 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:43:53,481 - mcts.mcts_optimizer - ERROR - Problem 19 not found
+2025-10-30 15:43:53,481 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:43:53,481 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_19_result.json
+2025-10-30 15:43:53,482 - __main__ - INFO -   Problem 2/10 (train idx: 15)
+2025-10-30 15:43:53,482 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 15
+2025-10-30 15:43:53,482 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:43:53,533 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:43:53,533 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:43:53,533 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:44:43,592 - mcts.mcts_optimizer - ERROR - Problem 15 not found
+2025-10-30 15:44:43,592 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:44:43,592 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_15_result.json
+2025-10-30 15:44:43,592 - __main__ - INFO -   Problem 3/10 (train idx: 23)
+2025-10-30 15:44:43,592 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 23
+2025-10-30 15:44:43,592 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:44:43,645 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:44:43,646 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:44:43,646 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:44:43,706 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-579' coro=<AsyncClient.aclose() done, defined at /usr/local/lib/python3.12/dist-packages/httpx/_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_transports/default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_backends/anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/streams/tls.py", line 216, in aclose
+    await self.transport_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/_backends/_asyncio.py", line 1314, in aclose
+    self._transport.close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 1213, in close
+    super().close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 875, in close
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 799, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 545, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+2025-10-30 15:44:43,710 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-581' coro=<AsyncClient.aclose() done, defined at /usr/local/lib/python3.12/dist-packages/httpx/_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_transports/default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_backends/anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/streams/tls.py", line 216, in aclose
+    await self.transport_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/_backends/_asyncio.py", line 1314, in aclose
+    self._transport.close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 1213, in close
+    super().close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 875, in close
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 799, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 545, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+2025-10-30 15:44:43,716 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-583' coro=<AsyncClient.aclose() done, defined at /usr/local/lib/python3.12/dist-packages/httpx/_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_transports/default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_backends/anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/streams/tls.py", line 216, in aclose
+    await self.transport_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/_backends/_asyncio.py", line 1314, in aclose
+    self._transport.close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 1213, in close
+    super().close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 875, in close
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 799, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 545, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+2025-10-30 15:44:43,719 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-584' coro=<AsyncClient.aclose() done, defined at /usr/local/lib/python3.12/dist-packages/httpx/_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_transports/default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_async/http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/httpcore/_backends/anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/streams/tls.py", line 216, in aclose
+    await self.transport_stream.aclose()
+  File "/usr/local/lib/python3.12/dist-packages/anyio/_backends/_asyncio.py", line 1314, in aclose
+    self._transport.close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 1213, in close
+    super().close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 875, in close
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 799, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 545, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+2025-10-30 15:45:33,737 - mcts.mcts_optimizer - ERROR - Problem 23 not found
+2025-10-30 15:45:33,737 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:45:33,737 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_23_result.json
+2025-10-30 15:45:33,737 - __main__ - INFO -   Problem 4/10 (train idx: 6)
+2025-10-30 15:45:33,737 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 6
+2025-10-30 15:45:33,737 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:45:33,791 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:45:33,791 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:45:33,791 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:46:23,852 - mcts.mcts_optimizer - ERROR - Problem 6 not found
+2025-10-30 15:46:23,852 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:46:23,852 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_6_result.json
+2025-10-30 15:46:23,852 - __main__ - INFO -   Problem 5/10 (train idx: 21)
+2025-10-30 15:46:23,852 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 21
+2025-10-30 15:46:23,852 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:46:23,903 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:46:23,904 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:46:23,904 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:47:13,969 - mcts.mcts_optimizer - ERROR - Problem 21 not found
+2025-10-30 15:47:13,969 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:47:13,970 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_21_result.json
+2025-10-30 15:47:13,970 - __main__ - INFO -   Problem 6/10 (train idx: 5)
+2025-10-30 15:47:13,970 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 5
+2025-10-30 15:47:13,970 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:47:14,023 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:47:14,023 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:47:14,023 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:48:09,424 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:48:16,037 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:48:22,919 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:48:28,929 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:48:28,933 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 15:48:28,933 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_5_result.json
+2025-10-30 15:48:28,933 - __main__ - INFO -   Problem 7/10 (train idx: 3)
+2025-10-30 15:48:28,933 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 3
+2025-10-30 15:48:28,933 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:48:28,987 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:48:28,988 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:48:28,988 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:49:30,175 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:49:41,204 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:49:49,218 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:49:54,306 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-30 15:49:54,318 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@1: 0.0000
+2025-10-30 15:49:54,318 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_3_result.json
+2025-10-30 15:49:54,318 - __main__ - INFO -   Problem 8/10 (train idx: 10)
+2025-10-30 15:49:54,318 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 10
+2025-10-30 15:49:54,318 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:49:54,372 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:49:54,373 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:49:54,373 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:50:44,432 - mcts.mcts_optimizer - ERROR - Problem 10 not found
+2025-10-30 15:50:44,432 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:50:44,432 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_10_result.json
+2025-10-30 15:50:44,432 - __main__ - INFO -   Problem 9/10 (train idx: 17)
+2025-10-30 15:50:44,432 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 17
+2025-10-30 15:50:44,432 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:50:44,483 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:50:44,483 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:50:44,483 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:51:34,549 - mcts.mcts_optimizer - ERROR - Problem 17 not found
+2025-10-30 15:51:34,549 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:51:34,550 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_17_result.json
+2025-10-30 15:51:34,550 - __main__ - INFO -   Problem 10/10 (train idx: 20)
+2025-10-30 15:51:34,550 - mcts.mcts_optimizer - INFO - Starting MCTS optimization for problem 20
+2025-10-30 15:51:34,550 - mcts.mcts_optimizer - INFO - Iterations: 10, Samples: 3, Rounds: 5
+2025-10-30 15:51:34,604 - mcts.aflow_wrapper - INFO - Initialized AFlow optimizer for MATH (math)
+2025-10-30 15:51:34,605 - mcts.aflow_wrapper - INFO - Settings: max_rounds=5, sample=3, validation_rounds=10
+2025-10-30 15:51:34,605 - mcts.aflow_wrapper - INFO - Starting AFlow optimization in Graph mode
+2025-10-30 15:52:24,663 - mcts.mcts_optimizer - ERROR - Problem 20 not found
+2025-10-30 15:52:24,664 - mcts.mcts_optimizer - INFO - Evaluation complete. Pass@0: 0.0000
+2025-10-30 15:52:24,664 - mcts.mcts_optimizer - INFO - Optimization result saved to /content/agentworkflow/outputs/results/problem_20_result.json
+2025-10-30 15:52:24,664 - __main__ - INFO - 
+Training GRPO on 7 trajectories
+2025-10-30 15:52:24,664 - __main__ - INFO - Training GRPO on 7 trajectories
+2025-10-30 15:52:24,664 - grpo.grpo_trainer - INFO - Starting GRPO training on 7 trajectories
+2025-10-30 15:52:24,664 - grpo.grpo_trainer - INFO - Epoch 1/3
+2025-10-30 15:52:25,195 - grpo.grpo_trainer - INFO - Epoch 0 complete: Loss=-0.1165
+2025-10-30 15:52:25,197 - grpo.grpo_trainer - INFO - Epoch 2/3
+2025-10-30 15:52:25,732 - grpo.grpo_trainer - INFO - Epoch 1 complete: Loss=-0.1172
+2025-10-30 15:52:25,733 - grpo.grpo_trainer - INFO - Epoch 3/3
+2025-10-30 15:52:26,256 - grpo.grpo_trainer - INFO - Epoch 2 complete: Loss=-0.1177
+2025-10-30 15:52:26,257 - grpo.grpo_trainer - INFO - Training complete. Total steps: 24
+2025-10-30 15:52:26,260 - mcts.mcts_optimizer - INFO - Checkpoint saved to ./checkpoints/epoch_2/mcts/checkpoint.json
+2025-10-30 15:52:26,404 - grpo.qwen_policy - INFO - Checkpoint saved to ./checkpoints/epoch_2/grpo
+2025-10-30 15:52:26,405 - grpo.grpo_trainer - INFO - Checkpoint saved to ./checkpoints/epoch_2/grpo
+2025-10-30 15:52:26,548 - grpo.qwen_policy - INFO - Checkpoint saved to ./checkpoints/epoch_2/policy
+2025-10-30 15:52:26,548 - __main__ - INFO - Checkpoint saved to ./checkpoints/epoch_2
+2025-10-30 15:52:27,015 - __main__ - INFO - Backup saved to /content/drive/MyDrive/agentworkflow/checkpoints/epoch_2
+2025-10-30 15:52:27,015 - __main__ - INFO - 
+Training complete!
+2025-10-30 15:52:27,015 - __main__ - INFO - 
+============================================================
+2025-10-30 15:52:27,015 - __main__ - INFO - Training Summary
+2025-10-30 15:52:27,015 - __main__ - INFO - ============================================================
+2025-10-30 15:52:27,015 - __main__ - INFO - MCTS: {'total_problems': 23, 'successful': 23, 'avg_pass_at_k': 0.0, 'problem_ids': [11, 16, 20, 14, 13, 15, 0, 21, 2, 3, 5, 6, 12, 9, 19, 4, 17, 18, 22, 8, 10, 1, 23]}
+2025-10-30 15:52:27,015 - __main__ - INFO - GRPO: {'epochs': 9, 'total_steps': 24, 'avg_loss': np.float64(-0.08312197084780093), 'final_loss': np.float64(-0.11767578125)}
+2025-10-30 15:52:27,020 - __main__ - INFO - Results saved to ./outputs/results.json
+2025-10-30 15:52:27,020 - __main__ - INFO - Training completed successfully!

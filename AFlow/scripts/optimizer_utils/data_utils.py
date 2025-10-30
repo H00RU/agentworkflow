@@ -27,21 +27,31 @@ class DataUtils:
 
     def get_top_rounds(self, sample: int, path=None, mode="Graph"):
         self._load_scores(path, mode)
+
+        if not self.top_scores:
+            logger.warning("No scores available, returning empty list")
+            return []
+
         unique_rounds = set()
         unique_top_scores = []
 
-        first_round = next((item for item in self.top_scores if item["round"] == 1), None)
-        if first_round:
-            unique_top_scores.append(first_round)
-            unique_rounds.add(1)
+        try:
+            first_round = next((item for item in self.top_scores if item.get("round") == 1), None)
+            if first_round:
+                unique_top_scores.append(first_round)
+                unique_rounds.add(1)
 
-        for item in self.top_scores:
-            if item["round"] not in unique_rounds:
-                unique_top_scores.append(item)
-                unique_rounds.add(item["round"])
+            for item in self.top_scores:
+                round_num = item.get("round")
+                if round_num is not None and round_num not in unique_rounds:
+                    unique_top_scores.append(item)
+                    unique_rounds.add(round_num)
 
-                if len(unique_top_scores) >= sample:
-                    break
+                    if len(unique_top_scores) >= sample:
+                        break
+        except Exception as e:
+            logger.error(f"Error in get_top_rounds: {e}")
+            return []
 
         return unique_top_scores
 
@@ -136,14 +146,26 @@ class DataUtils:
         result_file = os.path.join(rounds_dir, "results.json")
         self.top_scores = []
 
-        data = read_json_file(result_file, encoding="utf-8")
-        df = pd.DataFrame(data)
+        try:
+            data = read_json_file(result_file, encoding="utf-8")
+            if not data:
+                logger.warning(f"No data found in {result_file}")
+                return self.top_scores
 
-        scores_per_round = df.groupby("round")["score"].mean().to_dict()
+            df = pd.DataFrame(data)
 
-        for round_number, average_score in scores_per_round.items():
-            self.top_scores.append({"round": round_number, "score": average_score})
+            if df.empty or 'round' not in df.columns or 'score' not in df.columns:
+                logger.warning(f"Invalid data format in {result_file}")
+                return self.top_scores
 
-        self.top_scores.sort(key=lambda x: x["score"], reverse=True)
+            scores_per_round = df.groupby("round")["score"].mean().to_dict()
+
+            for round_number, average_score in scores_per_round.items():
+                self.top_scores.append({"round": round_number, "score": average_score})
+
+            self.top_scores.sort(key=lambda x: x["score"], reverse=True)
+        except Exception as e:
+            logger.warning(f"Error loading scores from {result_file}: {e}")
+            self.top_scores = []
 
         return self.top_scores

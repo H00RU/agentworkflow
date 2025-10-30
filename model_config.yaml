@@ -1,0 +1,25 @@
+# Qwen 模型配置
+model:
+  name: Qwen2.5-7B-Instruct
+  path: /root/models/Qwen2.5-7B-Instruct
+  local: true
+  use_cache: true
+
+# 模型信息
+info:
+  size: 15GB
+  files: 17
+  model_files:
+    - model-00001-of-00004.safetensors (3.7GB)
+    - model-00002-of-00004.safetensors (3.6GB)
+    - model-00003-of-00004.safetensors (3.6GB)
+    - model-00004-of-00004.safetensors (3.4GB)
+
+# 训练配置中使用本地路径:
+# config/minimal_test.yaml 和 config/training_config.yaml 中:
+# model:
+#   name: /root/models/Qwen2.5-7B-Instruct
+
+# 或使用 HuggingFace 自动下载（如果本地模型不可用）:
+# model:
+#   name: Qwen/Qwen2.5-7B-Instruct

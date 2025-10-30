@@ -171,9 +171,10 @@ class CodeFormatter(BaseFormatter):
             # If sanitize returned empty string, the code is invalid
             if not sanitized_code.strip():
                 return False, None
-            
-            # Return the sanitized code
-            result = {"response": sanitized_code}
+
+            # Return the sanitized code with key "code" (not "response")
+            # This matches what Programmer operator expects (operator.py:248)
+            result = {"code": sanitized_code}
             return True, result
             
         except Exception as e:

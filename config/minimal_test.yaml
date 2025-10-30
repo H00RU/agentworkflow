@@ -27,7 +27,7 @@ grpo:
   max_grad_norm: 1.0
 
 model:
-  name: Qwen/Qwen2-7B
+  name: /root/models/Qwen2.5-7B-Instruct  # 本地模型路径
   use_lora: true
   lora_rank: 8
   lora_alpha: 16

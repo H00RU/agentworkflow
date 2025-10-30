@@ -1,0 +1,58 @@
+{
+  "epoch": 2,
+  "global_step": 18,
+  "training_history": [
+    {
+      "epoch": 0,
+      "avg_loss": -0.010508219401041666,
+      "avg_policy_loss": 0.0,
+      "avg_entropy": 1.0520833333333333
+    },
+    {
+      "epoch": 1,
+      "avg_loss": -0.024861653645833332,
+      "avg_policy_loss": 0.0,
+      "avg_entropy": 2.4817708333333335
+    },
+    {
+      "epoch": 2,
+      "avg_loss": -0.043701171875,
+      "avg_policy_loss": 0.0,
+      "avg_entropy": 4.375
+    },
+    {
+      "epoch": 0,
+      "avg_loss": -0.09000651041666667,
+      "avg_policy_loss": 0.0,
+      "avg_entropy": 9.0
+    },
+    {
+      "epoch": 1,
+      "avg_loss": -0.11197916666666667,
+      "avg_policy_loss": 0.0,
+      "avg_entropy": 11.208333333333334
+    },
+    {
+      "epoch": 2,
+      "avg_loss": -0.11572265625,
+      "avg_policy_loss": 0.0,
+      "avg_entropy": 11.5625
+    }
+  ],
+  "config": {
+    "learning_rate": 1e-05,
+    "lora_learning_rate": 0.0005,
+    "num_epochs": 3,
+    "batch_size": 4,
+    "gradient_accumulation_steps": 2,
+    "gamma": 0.99,
+    "lam": 0.95,
+    "entropy_coeff": 0.01,
+    "value_coeff": 0.5,
+    "max_grad_norm": 1.0,
+    "warmup_steps": 100,
+    "weight_decay": 0.01,
+    "checkpoint_every_n_steps": 100,
+    "eval_every_n_steps": 50
+  }
+}

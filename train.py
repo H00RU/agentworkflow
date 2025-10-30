@@ -258,32 +258,47 @@ class WorkflowTrainer:
         mcts_config = self.config['mcts']
         problems_per_episode = self.config['training'].get('problems_per_episode', 5)
 
-        # Get sample problems from dataset
-        num_test_problems = len(self.evaluator.evaluator.test_problems)
-        if num_test_problems == 0:
-            logger.warning("No test problems available")
+        # Get sample problems from dataset (use TRAIN split, not test!)
+        num_train_problems = len(self.evaluator.evaluator.train_problems)
+        if num_train_problems == 0:
+            logger.warning("No train problems available")
             return episode_result
 
-        # Randomly select problems
+        # Randomly select problems from training set
         import random
         selected_indices = random.sample(
-            range(num_test_problems),
-            min(problems_per_episode, num_test_problems)
+            range(num_train_problems),
+            min(problems_per_episode, num_train_problems)
         )
 
         for idx, problem_idx in enumerate(selected_indices):
-            logger.info(f"  Problem {idx + 1}/{len(selected_indices)}")
+            logger.info(f"  Problem {idx + 1}/{len(selected_indices)} (train idx: {problem_idx})")
 
-            problem = self.evaluator.get_problem(problem_idx, split='test')
+            problem = self.evaluator.get_problem(problem_idx, split='train')
 
             if problem is None:
                 logger.warning(f"Problem {problem_idx} not found")
                 continue
 
             # Run MCTS optimization
+            # Determine dataset type and question type from config
+            dataset_name = self.config['dataset']['name']
+            # Map dataset names to AFlow dataset types
+            dataset_type_map = {
+                'AIME24': 'MATH',  # AIME is a math dataset, use MATH for AFlow
+                'GSM8K': 'GSM8K',
+                'MATH': 'MATH',
+                'HumanEval': 'HumanEval',
+                'MBPP': 'MBPP',
+            }
+            dataset_type = dataset_type_map.get(dataset_name, 'MATH')
+            question_type = 'math'  # AIME24 is math problems
+
             mcts_result = self.mcts_optimizer.optimize_problem(
                 problem_id=problem_idx,
                 problem_text=problem['question'],
+                dataset_type=dataset_type,
+                question_type=question_type,
                 num_iterations=mcts_config['num_iterations'],
                 num_samples_per_iteration=mcts_config['num_samples_per_iteration'],
                 num_search_rounds=mcts_config['num_search_rounds'],

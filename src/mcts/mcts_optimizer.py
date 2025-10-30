@@ -61,11 +61,20 @@ class MCTSOptimizer:
         os.makedirs(self.workspace_path, exist_ok=True)
 
         # Initialize AFlow wrapper (will auto-detect local AFlow)
+        # Get LLM config from environment or use defaults
+        llm_config = {
+            'opt_model': os.getenv('AFLOW_OPT_MODEL', 'gpt-4o-mini'),
+            'exec_model': os.getenv('AFLOW_EXEC_MODEL', 'gpt-4o-mini'),
+            'api_key': os.getenv('OPENAI_API_KEY'),
+            'base_url': os.getenv('OPENAI_BASE_URL', 'https://api.openai.com/v1'),
+        }
+
         self.aflow_wrapper = AFlowOptimizerWrapper(
             aflow_path=self.aflow_path,
             workspace_path=self.workspace_path,
             use_custom_llm=use_custom_llm,
             custom_llm_fn=custom_llm_fn,
+            llm_config=llm_config,
         )
 
         # Optimization history
@@ -75,6 +84,8 @@ class MCTSOptimizer:
     def optimize_problem(self,
                         problem_id: int,
                         problem_text: str,
+                        dataset_type: str = "MATH",
+                        question_type: str = "math",
                         num_iterations: int = 10,
                         num_samples_per_iteration: int = 3,
                         num_search_rounds: int = 5,
@@ -85,6 +96,8 @@ class MCTSOptimizer:
         Args:
             problem_id: Problem ID from dataset
             problem_text: Problem description/code
+            dataset_type: Dataset type (MATH, GSM8K, AIME24, etc.)
+            question_type: Question type (math, code, qa)
             num_iterations: MCTS iterations per round
             num_samples_per_iteration: Samples per iteration
             num_search_rounds: Number of search rounds
@@ -104,8 +117,11 @@ class MCTSOptimizer:
             if not self.aflow_wrapper.initialize_optimizer(
                 problem_code=problem_text,
                 problem_name=problem_name,
+                dataset_type=dataset_type,
+                question_type=question_type,
                 num_iterations=num_iterations,
                 num_samples_per_iteration=num_samples_per_iteration,
+                max_rounds=num_search_rounds,
             ):
                 return {
                     'success': False,
@@ -170,6 +186,102 @@ class MCTSOptimizer:
                 'error': str(e)
             }
 
+    def _execute_workflow(self, workflow_path: str, problem_text: str) -> tuple[str, float]:
+        """
+        Execute a workflow on a problem to get its output.
+
+        Args:
+            workflow_path: Path to workflow Python file
+            problem_text: Problem text to solve
+
+        Returns:
+            (output, cost) tuple where output is the workflow's solution
+        """
+        import sys
+        import os
+        import importlib.util
+        import asyncio
+
+        try:
+            # Add workflow directory to sys.path for relative imports
+            workflow_dir = os.path.dirname(workflow_path)
+            if workflow_dir not in sys.path:
+                sys.path.insert(0, workflow_dir)
+
+            # Also add AFlow to path for operator imports
+            if self.aflow_path not in sys.path:
+                sys.path.insert(0, self.aflow_path)
+
+            # Add the dataset root path for "workflows.template.operator" imports
+            # E.g., /content/agentworkflow/outputs/MATH for MATH dataset
+            # This allows `import workflows.template.operator` to work
+            dataset_root = os.path.dirname(os.path.dirname(workflow_dir))
+            if dataset_root not in sys.path:
+                sys.path.insert(0, dataset_root)
+
+            # Load workflow module dynamically
+            module_name = os.path.splitext(os.path.basename(workflow_path))[0]
+            spec = importlib.util.spec_from_file_location(module_name, workflow_path)
+            if spec is None or spec.loader is None:
+                raise ImportError(f"Could not load module from {workflow_path}")
+
+            module = importlib.util.module_from_spec(spec)
+            sys.modules[module_name] = module
+            spec.loader.exec_module(module)
+
+            # Get Workflow class
+            if not hasattr(module, 'Workflow'):
+                raise AttributeError(f"No 'Workflow' class found in {workflow_path}")
+
+            WorkflowClass = module.Workflow
+
+            # Create LLM config for workflow execution
+            from scripts.async_llm import LLMConfig
+            llm_config = LLMConfig({
+                "model": os.getenv('AFLOW_EXEC_MODEL', 'gpt-4o-mini'),
+                "temperature": 0.0,
+                "key": os.getenv('OPENAI_API_KEY'),
+                "base_url": os.getenv('OPENAI_BASE_URL', 'https://api.openai.com/v1'),
+            })
+
+            # Instantiate workflow
+            workflow = WorkflowClass(
+                name="eval_workflow",
+                llm_config=llm_config,
+                dataset={}
+            )
+
+            # Execute workflow (async)
+            if asyncio.iscoroutinefunction(workflow.__call__):
+                output = asyncio.run(workflow(problem_text))
+            else:
+                output = workflow(problem_text)
+
+            # Handle different return types
+            if isinstance(output, tuple):
+                # (output_text, cost) format
+                return output
+            elif isinstance(output, str):
+                # Just output text
+                return (output, 0.0)
+            else:
+                # Convert to string
+                return (str(output), 0.0)
+
+        except Exception as e:
+            logger.error(f"Failed to execute workflow {workflow_path}: {e}")
+            import traceback
+            logger.error(traceback.format_exc())
+            return (f"Error: {str(e)}", 0.0)
+        finally:
+            # Cleanup: remove module and restore sys.path
+            if module_name in sys.modules:
+                del sys.modules[module_name]
+            if workflow_dir in sys.path:
+                sys.path.remove(workflow_dir)
+            if dataset_root in sys.path:
+                sys.path.remove(dataset_root)
+
     def _evaluate_workflows(self,
                            workflow_paths: List[str],
                            problem_id: int) -> List[Dict[str, Any]]:
@@ -186,22 +298,30 @@ class MCTSOptimizer:
         if not self.evaluator:
             return []
 
+        # Get problem text
+        problem = self.evaluator.get_problem(problem_id, split='test')
+        if not problem:
+            logger.error(f"Problem {problem_id} not found")
+            return []
+
+        problem_text = problem['question']
         results = []
 
         for workflow_path in workflow_paths:
             try:
-                # Load workflow
-                with open(workflow_path, 'r') as f:
-                    workflow_code = f.read()
+                # Execute workflow to get output
+                output, cost = self._execute_workflow(workflow_path, problem_text)
 
-                # Evaluate
+                # Evaluate the OUTPUT (not the code)
                 eval_result = self.evaluator.evaluate_workflow_response(
-                    generated_text=workflow_code,
+                    generated_text=output,
                     problem_id=problem_id,
                     split='test'
                 )
 
                 eval_result['workflow_path'] = workflow_path
+                eval_result['generated'] = output[:200]  # Store first 200 chars
+                eval_result['cost'] = cost
                 results.append(eval_result)
 
             except Exception as e:
@@ -209,7 +329,8 @@ class MCTSOptimizer:
                 results.append({
                     'workflow_path': workflow_path,
                     'correct': False,
-                    'error': str(e)
+                    'error': str(e),
+                    'generated': ''
                 })
 
         return results

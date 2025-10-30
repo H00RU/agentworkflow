@@ -105,14 +105,7 @@ print_step "[4/8] 安装 PyTorch"
 if python3 -c "import torch; print(torch.__version__)" 2>/dev/null; then
     TORCH_VERSION=$(python3 -c "import torch; print(torch.__version__)")
     print_warning "PyTorch 已安装 (版本: $TORCH_VERSION)"
-    read -p "是否重新安装? (y/N): " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        print_info "重新安装 PyTorch..."
-        pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-    else
-        print_info "跳过 PyTorch 安装"
-    fi
+    print_info "跳过 PyTorch 安装（如需重新安装，请先运行: pip uninstall torch torchvision torchaudio）"
 else
     print_info "安装 PyTorch (CUDA 11.8)..."
     pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
@@ -156,37 +149,88 @@ pip3 install aiofiles tree-sitter sympy
 print_info "✓ AFlow 依赖安装完成"
 
 # ============================================================================
-# 步骤 7: 配置 Qwen 模型
+# 步骤 7: 下载 Qwen 模型到本地
 # ============================================================================
-print_step "[7/8] 配置 Qwen 模型"
+print_step "[7/8] 下载 Qwen 模型到本地"
 
 MODEL_PATH="/root/models/Qwen2.5-7B-Instruct"
 
-if [ -d "$MODEL_PATH" ]; then
-    print_info "✓ 发现本地 Qwen 模型: $MODEL_PATH"
+# 检查模型是否已存在
+if [ -d "$MODEL_PATH" ] && [ -f "$MODEL_PATH/config.json" ] && \
+   [ -f "$MODEL_PATH/tokenizer.json" ] && \
+   [ -f "$MODEL_PATH/model.safetensors.index.json" ]; then
+    print_info "✓ 模型已存在: $MODEL_PATH"
 
-    # 检查模型文件完整性
-    if [ -f "$MODEL_PATH/config.json" ] && \
-       [ -f "$MODEL_PATH/tokenizer.json" ] && \
-       [ -f "$MODEL_PATH/model.safetensors.index.json" ]; then
-        print_info "✓ 模型文件完整"
+    # 检查模型大小
+    MODEL_SIZE=$(du -sh "$MODEL_PATH" | cut -f1)
+    print_info "  模型大小: $MODEL_SIZE"
 
-        # 创建软链接到项目目录
-        if [ ! -L "./models" ]; then
-            print_info "创建模型软链接..."
-            ln -s "$MODEL_PATH" ./models
-            print_info "✓ 软链接创建完成: ./models -> $MODEL_PATH"
+else
+    print_info "准备下载 Qwen2.5-7B-Instruct 到 $MODEL_PATH"
+    print_info "模型大小约 15GB，下载时间取决于网络速度..."
+
+    # 创建目录
+    mkdir -p /root/models
+
+    # 使用 huggingface-cli 下载模型
+    print_info "开始下载模型..."
+
+    if command -v huggingface-cli &> /dev/null; then
+        # 使用 huggingface-cli (新版本用 hf download)
+        if huggingface-cli download --help 2>&1 | grep -q "deprecated"; then
+            # 新版本使用 hf download
+            hf download Qwen/Qwen2.5-7B-Instruct \
+                --local-dir "$MODEL_PATH" \
+                --local-dir-use-symlinks False
         else
-            print_info "软链接已存在: ./models"
+            # 旧版本使用 huggingface-cli download
+            huggingface-cli download Qwen/Qwen2.5-7B-Instruct \
+                --local-dir "$MODEL_PATH" \
+                --local-dir-use-symlinks False
         fi
 
-        # 设置环境变量
-        echo "export QWEN_MODEL_PATH=\"$MODEL_PATH\"" >> ~/.bashrc
-        export QWEN_MODEL_PATH="$MODEL_PATH"
-        print_info "✓ 环境变量已设置: QWEN_MODEL_PATH"
+        if [ $? -eq 0 ]; then
+            print_info "✓ 模型下载成功"
+        else
+            print_error "✗ 模型下载失败"
+            print_warning "请手动运行以下命令下载模型:"
+            print_warning "  mkdir -p /root/models"
+            print_warning "  huggingface-cli download Qwen/Qwen2.5-7B-Instruct \\"
+            print_warning "      --local-dir /root/models/Qwen2.5-7B-Instruct \\"
+            print_warning "      --local-dir-use-symlinks False"
+            print_warning ""
+            print_warning "或者修改配置文件 config/*.yaml 中的 model.name 为:"
+            print_warning "  name: Qwen/Qwen2.5-7B-Instruct  # 使用 HuggingFace 自动下载"
+        fi
+    else
+        print_error "✗ huggingface-cli 未安装"
+        print_warning "请先安装: pip install huggingface_hub"
+        print_warning "然后手动运行以下命令下载模型:"
+        print_warning "  huggingface-cli download Qwen/Qwen2.5-7B-Instruct \\"
+        print_warning "      --local-dir /root/models/Qwen2.5-7B-Instruct \\"
+        print_warning "      --local-dir-use-symlinks False"
+    fi
+fi
 
-        # 创建配置文件
-        cat > ./model_config.yaml << EOF
+# 验证模型
+if [ -d "$MODEL_PATH" ] && [ -f "$MODEL_PATH/config.json" ]; then
+    print_info "✓ 模型验证成功: $MODEL_PATH"
+
+    # 创建软链接到项目目录（可选）
+    if [ ! -L "./models" ]; then
+        ln -s "$MODEL_PATH" ./models
+        print_info "✓ 软链接创建: ./models -> $MODEL_PATH"
+    fi
+
+    # 设置环境变量
+    export QWEN_MODEL_PATH="$MODEL_PATH"
+    if ! grep -q "QWEN_MODEL_PATH" ~/.bashrc; then
+        echo "export QWEN_MODEL_PATH=\"$MODEL_PATH\"" >> ~/.bashrc
+        print_info "✓ 环境变量已添加到 ~/.bashrc"
+    fi
+
+    # 创建模型配置文件
+    cat > ./model_config.yaml << EOF
 # Qwen 模型配置
 model:
   name: Qwen2.5-7B-Instruct
@@ -194,29 +238,21 @@ model:
   local: true
   use_cache: true
 
-# 如果本地模型不可用，使用 HuggingFace
-fallback:
-  name: Qwen/Qwen2.5-7B-Instruct
-  local: false
-EOF
-        print_info "✓ 模型配置文件已创建: ./model_config.yaml"
+# 模型信息
+info:
+  size: $(du -sh "$MODEL_PATH" 2>/dev/null | cut -f1 || echo "unknown")
+  files: $(ls "$MODEL_PATH" 2>/dev/null | wc -l || echo "0")
 
-    else
-        print_warning "模型文件不完整，训练时将从 HuggingFace 下载"
-    fi
+# 训练配置中使用本地路径:
+# model:
+#   name: /root/models/Qwen2.5-7B-Instruct
+EOF
+    print_info "✓ 模型配置文件: ./model_config.yaml"
+
 else
-    print_warning "本地模型路径不存在: $MODEL_PATH"
-    print_warning "训练时将从 HuggingFace 下载模型"
-
-    # 创建配置文件
-    cat > ./model_config.yaml << EOF
-# Qwen 模型配置
-model:
-  name: Qwen/Qwen2.5-7B-Instruct
-  local: false
-  use_cache: true
-EOF
-    print_info "✓ 模型配置文件已创建: ./model_config.yaml (使用 HuggingFace)"
+    print_warning "模型未安装或不完整"
+    print_info "训练时将从 HuggingFace 自动下载"
+    print_info "配置文件中使用: name: Qwen/Qwen2.5-7B-Instruct"
 fi
 
 # ============================================================================

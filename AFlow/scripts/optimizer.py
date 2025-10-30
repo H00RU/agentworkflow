@@ -4,6 +4,7 @@
 # @Desc    : optimizer for graph (updated with AsyncLLM integration)
 
 import asyncio
+import os
 import time
 from typing import List, Literal, Dict
 
@@ -68,6 +69,240 @@ class Optimizer:
         self.evaluation_utils = EvaluationUtils(self.root_path)
         self.convergence_utils = ConvergenceUtils(self.root_path)
 
+    def _create_default_initial_workflow(self, graph_path: str):
+        """Create default initial workflow templates when not found"""
+        import json
+
+        # Create template directory
+        template_dir = os.path.join(graph_path, "template")
+        os.makedirs(template_dir, exist_ok=True)
+
+        # Create __init__.py for template
+        template_init = os.path.join(template_dir, "__init__.py")
+        with open(template_init, 'w') as f:
+            f.write("")
+
+        # Create symbolic link to AFlow operators
+        operator_py_path = os.path.join(template_dir, "operator.py")
+        aflow_operator_path = os.path.abspath(os.path.join(
+            os.path.dirname(__file__), "..", "scripts", "operators.py"
+        ))
+        if not os.path.exists(operator_py_path):
+            try:
+                os.symlink(aflow_operator_path, operator_py_path)
+                logger.info(f"Created symlink: {operator_py_path} -> {aflow_operator_path}")
+            except OSError:
+                # If symlink fails, copy the file
+                import shutil
+                shutil.copy(aflow_operator_path, operator_py_path)
+                logger.info(f"Copied operator.py to {operator_py_path}")
+
+        operator_json_path = os.path.join(template_dir, "operator.json")
+        if not os.path.exists(operator_json_path):
+            operator_descriptions = {
+                "Custom": {
+                    "description": "A flexible operator that takes custom instructions and processes input accordingly",
+                    "interface": "Custom(input: str, instruction: str) -> Dict[str, Any]"
+                },
+                "ScEnsemble": {
+                    "description": "Self-Consistency Ensemble operator that aggregates multiple solutions",
+                    "interface": "ScEnsemble(solutions: List[str], problem: str) -> Dict[str, Any]"
+                },
+                "Programmer": {
+                    "description": "Generates and executes Python code to solve problems",
+                    "interface": "Programmer(problem: str, analysis: str = 'None') -> Dict[str, Any]"
+                },
+                "AnswerGenerate": {
+                    "description": "Generates direct answers to questions",
+                    "interface": "AnswerGenerate(input: str) -> Tuple[str, str]"
+                },
+                "CustomCodeGenerate": {
+                    "description": "Generates code with custom instructions",
+                    "interface": "CustomCodeGenerate(problem: str, entry_point: str, instruction: str) -> Dict[str, Any]"
+                },
+                "Test": {
+                    "description": "Tests generated code solutions",
+                    "interface": "Test(solution: str, entry_point: str) -> Union[List[Dict], str]"
+                }
+            }
+            with open(operator_json_path, 'w', encoding='utf-8') as f:
+                json.dump(operator_descriptions, f, indent=2, ensure_ascii=False)
+            logger.info(f"Created operator.json at {operator_json_path}")
+
+        # Create round_1 directory
+        round_1_dir = os.path.join(graph_path, "round_1")
+        os.makedirs(round_1_dir, exist_ok=True)
+
+        # Create __init__.py
+        init_file = os.path.join(round_1_dir, "__init__.py")
+        with open(init_file, 'w') as f:
+            f.write("")
+
+        # Create default prompt.py based on question type
+        prompt_file = os.path.join(round_1_dir, "prompt.py")
+        if self.type == "math":
+            prompt_content = '''# Math problem solving prompts
+SOLVE_PROMPT = """Solve the following math problem step by step. Show your work clearly.
+
+Problem: """
+
+ANALYZE_PROMPT = """Analyze the following math problem and identify the key concepts and steps needed.
+
+Problem: """
+'''
+        elif self.type == "code":
+            prompt_content = '''# Code generation prompts
+CODE_PROMPT = """Write Python code to solve the following problem. Include a main function.
+
+Problem: """
+
+TEST_PROMPT = """Review the following code and suggest improvements.
+
+Code: """
+'''
+        else:  # qa
+            prompt_content = '''# Question answering prompts
+ANSWER_PROMPT = """Answer the following question based on the given context.
+
+Question: """
+
+REASONING_PROMPT = """Provide reasoning for your answer to the following question.
+
+Question: """
+'''
+
+        with open(prompt_file, 'w', encoding='utf-8') as f:
+            f.write(prompt_content)
+        logger.info(f"Created prompt.py at {prompt_file}")
+
+        # Create default graph.py based on question type and operators
+        graph_file = os.path.join(round_1_dir, "graph.py")
+
+        if self.type == "math":
+            if "Programmer" in self.operators:
+                graph_content = '''class Workflow:
+    def __init__(self, name, llm_config, dataset):
+        from scripts.async_llm import create_llm_instance
+        import workflows.template.operator as operator
+
+        self.llm = create_llm_instance(llm_config)
+        self.programmer = operator.Programmer(self.llm)
+        self.sc_ensemble = operator.ScEnsemble(self.llm)
+        self.custom = operator.Custom(self.llm)
+
+    async def __call__(self, problem: str):
+        # Generate multiple solutions using programmer
+        solutions = []
+        for i in range(3):
+            result = await self.programmer(problem=problem, analysis="None")
+            if result.get("output"):
+                solutions.append(result.get("output"))
+
+        # If we have multiple solutions, use ensemble
+        if len(solutions) > 1:
+            ensemble_result = await self.sc_ensemble(solutions=solutions, problem=problem)
+            return ensemble_result.get("response", solutions[0] if solutions else "No solution")
+        elif solutions:
+            return solutions[0]
+        else:
+            return "No solution found"
+'''
+            else:
+                graph_content = '''class Workflow:
+    def __init__(self, name, llm_config, dataset):
+        from scripts.async_llm import create_llm_instance
+        import workflows.template.operator as operator
+        import workflows.round_1.prompt as prompt_custom
+
+        self.llm = create_llm_instance(llm_config)
+        self.custom = operator.Custom(self.llm)
+        self.sc_ensemble = operator.ScEnsemble(self.llm)
+
+    async def __call__(self, problem: str):
+        # Generate multiple solutions
+        solutions = []
+        for i in range(3):
+            result = await self.custom(input=problem, instruction="Solve this math problem step by step:\\n")
+            if result.get("response"):
+                solutions.append(result.get("response"))
+
+        # Use ensemble to select best solution
+        if len(solutions) > 1:
+            ensemble_result = await self.sc_ensemble(solutions=solutions, problem=problem)
+            return ensemble_result.get("response", solutions[0])
+        elif solutions:
+            return solutions[0]
+        else:
+            return "No solution found"
+'''
+        elif self.type == "code":
+            graph_content = '''class Workflow:
+    def __init__(self, name, llm_config, dataset):
+        from scripts.async_llm import create_llm_instance
+        import workflows.template.operator as operator
+
+        self.llm = create_llm_instance(llm_config)
+        self.code_generate = operator.CustomCodeGenerate(self.llm)
+        self.sc_ensemble = operator.ScEnsemble(self.llm)
+
+    async def __call__(self, problem: str, entry_point: str = "main"):
+        # Generate code solution
+        solutions = []
+        for i in range(2):
+            result = await self.code_generate(
+                problem=problem,
+                entry_point=entry_point,
+                instruction="Write clean, efficient code:\\n"
+            )
+            if result.get("response"):
+                solutions.append(result.get("response"))
+
+        if len(solutions) > 1:
+            ensemble_result = await self.sc_ensemble(solutions=solutions, problem=problem)
+            return ensemble_result.get("response", solutions[0])
+        elif solutions:
+            return solutions[0]
+        else:
+            return "# No solution generated"
+'''
+        else:  # qa
+            graph_content = '''class Workflow:
+    def __init__(self, name, llm_config, dataset):
+        from scripts.async_llm import create_llm_instance
+        import workflows.template.operator as operator
+
+        self.llm = create_llm_instance(llm_config)
+        self.answer_generate = operator.AnswerGenerate(self.llm)
+        self.sc_ensemble = operator.ScEnsemble(self.llm)
+
+    async def __call__(self, problem: str):
+        # Generate multiple answers
+        solutions = []
+        for i in range(3):
+            result = await self.answer_generate(input=problem)
+            if isinstance(result, tuple):
+                solutions.append(result[0])
+            elif result.get("response"):
+                solutions.append(result.get("response"))
+
+        # Use ensemble for final answer
+        if len(solutions) > 1:
+            ensemble_result = await self.sc_ensemble(solutions=solutions, problem=problem)
+            return ensemble_result.get("response", solutions[0])
+        elif solutions:
+            return solutions[0]
+        else:
+            return "No answer found"
+'''
+
+        # No need to replace dataset name anymore since we use relative imports
+
+        with open(graph_file, 'w', encoding='utf-8') as f:
+            f.write(graph_content)
+        logger.info(f"Created graph.py at {graph_file}")
+
+        logger.info(f"Successfully created default initial workflow for {self.dataset} ({self.type})")
+
     def optimize(self, mode: OptimizerType = "Graph"):
         if mode == "Test":
             test_n = 1  # validation datasets's execution number
@@ -124,6 +359,13 @@ class Optimizer:
 
         if self.round == 1:
             directory = self.graph_utils.create_round_directory(graph_path, self.round)
+
+            # Check if round_1 workflow exists, if not create default one
+            round_1_graph = os.path.join(graph_path, "round_1", "graph.py")
+            if not os.path.exists(round_1_graph):
+                logger.info(f"Initial workflow not found, creating default workflow for {self.dataset}")
+                self._create_default_initial_workflow(graph_path)
+
             # Load graph using graph_utils
             self.graph = self.graph_utils.load_graph(self.round, graph_path)
             avg_score = await self.evaluation_utils.evaluate_graph(self, directory, validation_n, data, initial=True)

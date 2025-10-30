@@ -4,10 +4,11 @@ Integrates with MCTS-generated pass@k scores as rewards.
 """
 
 from .qwen_policy import QwenPolicy, LoRAConfig
-from .grpo_trainer import GRPOTrainer
+from .grpo_trainer import GRPOTrainer, GRPOConfig
 
 __all__ = [
     'QwenPolicy',
     'LoRAConfig',
     'GRPOTrainer',
+    'GRPOConfig',
 ]

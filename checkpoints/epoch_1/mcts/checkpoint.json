@@ -1,0 +1,1161 @@
+{
+  "aflow_path": "/content/agentworkflow/AFlow",
+  "workspace_path": "/content/agentworkflow/outputs",
+  "optimization_history": [
+    {
+      "success": true,
+      "problem_id": 11,
+      "problem_name": "problem_11",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 16,
+      "problem_name": "problem_16",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 20,
+      "problem_name": "problem_20",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 14,
+      "problem_name": "problem_14",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 13,
+      "problem_name": "problem_13",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 15,
+      "problem_name": "problem_15",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 0,
+      "problem_name": "problem_0",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 0,
+          "correct": false,
+          "expected_answer": 371,
+          "problem_text": "Each vertex of a regular octagon is independently colored either red or blue with equal probability. The probability that the octagon can then be rotated so that all of the blue vertices end up at pos",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 21,
+      "problem_name": "problem_21",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 2,
+      "problem_name": "problem_2",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 2,
+          "correct": false,
+          "expected_answer": 540,
+          "problem_text": "Find the largest possible real part of \\[(75+117i)z + \\frac{96+144i}{z}\\] where $z$ is a complex number with $|z|=4$.When ready, output the final answer enclosed in <answer> and </answer> tags. Do not",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 3,
+      "problem_name": "problem_3",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 3,
+          "correct": false,
+          "expected_answer": 294,
+          "problem_text": "Consider the paths of length $16$ that follow the lines from the lower left corner to the upper right corner on an $8\\times 8$ grid. Find the number of such paths that change direction exactly four ti",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 5,
+      "problem_name": "problem_5",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 5,
+          "correct": false,
+          "expected_answer": 211,
+          "problem_text": "Let $b \\geq 2$ be an integer. Call a positive integer $n$ $b$\\textit{-eautiful} if it has exactly two digits when expressed in base $b$, and these two digits sum to $\\sqrt{n}$. For example, $81$ is $1",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 11,
+      "problem_name": "problem_11",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 6,
+      "problem_name": "problem_6",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 12,
+      "problem_name": "problem_12",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 9,
+      "problem_name": "problem_9",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 3,
+      "problem_name": "problem_3",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 3,
+          "correct": false,
+          "expected_answer": 294,
+          "problem_text": "Consider the paths of length $16$ that follow the lines from the lower left corner to the upper right corner on an $8\\times 8$ grid. Find the number of such paths that change direction exactly four ti",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 16,
+      "problem_name": "problem_16",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 19,
+      "problem_name": "problem_19",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 4,
+      "problem_name": "problem_4",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 4,
+          "correct": false,
+          "expected_answer": 902,
+          "problem_text": "There is a collection of $25$ indistinguishable white chips and $25$ indistinguishable black chips. Find the number of ways to place some of these chips in the $25$ unit cells of a $5\\times5$ grid suc",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 17,
+      "problem_name": "problem_17",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 21,
+      "problem_name": "problem_21",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 16,
+      "problem_name": "problem_16",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 0,
+      "problem_name": "problem_0",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 0,
+          "correct": false,
+          "expected_answer": 371,
+          "problem_text": "Each vertex of a regular octagon is independently colored either red or blue with equal probability. The probability that the octagon can then be rotated so that all of the blue vertices end up at pos",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 6,
+      "problem_name": "problem_6",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 5,
+      "problem_name": "problem_5",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 5,
+          "correct": false,
+          "expected_answer": 211,
+          "problem_text": "Let $b \\geq 2$ be an integer. Call a positive integer $n$ $b$\\textit{-eautiful} if it has exactly two digits when expressed in base $b$, and these two digits sum to $\\sqrt{n}$. For example, $81$ is $1",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 2,
+      "problem_name": "problem_2",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 2,
+          "correct": false,
+          "expected_answer": 540,
+          "problem_text": "Find the largest possible real part of \\[(75+117i)z + \\frac{96+144i}{z}\\] where $z$ is a complex number with $|z|=4$.When ready, output the final answer enclosed in <answer> and </answer> tags. Do not",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 18,
+      "problem_name": "problem_18",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 22,
+      "problem_name": "problem_22",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 19,
+      "problem_name": "problem_19",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 12,
+      "problem_name": "problem_12",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 8,
+      "problem_name": "problem_8",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 3,
+      "problem_name": "problem_3",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 3,
+          "correct": false,
+          "expected_answer": 294,
+          "problem_text": "Consider the paths of length $16$ that follow the lines from the lower left corner to the upper right corner on an $8\\times 8$ grid. Find the number of such paths that change direction exactly four ti",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 21,
+      "problem_name": "problem_21",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 19,
+      "problem_name": "problem_19",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 16,
+      "problem_name": "problem_16",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 10,
+      "problem_name": "problem_10",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 1,
+      "problem_name": "problem_1",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 1,
+          "correct": false,
+          "expected_answer": 601,
+          "problem_text": "Find the number of triples of nonnegative integers $(a,b,c)$ satisfying $a + b + c = 300$ and \\[a^2b + a^2c + b^2a + b^2c + c^2a + c^2b = 6,000,000.\\]When ready, output the final answer enclosed in <a",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 4,
+      "problem_name": "problem_4",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 4,
+          "correct": false,
+          "expected_answer": 902,
+          "problem_text": "There is a collection of $25$ indistinguishable white chips and $25$ indistinguishable black chips. Find the number of ways to place some of these chips in the $25$ unit cells of a $5\\times5$ grid suc",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 18,
+      "problem_name": "problem_18",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 0,
+      "problem_name": "problem_0",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 0,
+          "correct": false,
+          "expected_answer": 371,
+          "problem_text": "Each vertex of a regular octagon is independently colored either red or blue with equal probability. The probability that the octagon can then be rotated so that all of the blue vertices end up at pos",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 19,
+      "problem_name": "problem_19",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 23,
+      "problem_name": "problem_23",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 14,
+      "problem_name": "problem_14",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 22,
+      "problem_name": "problem_22",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 13,
+      "problem_name": "problem_13",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 20,
+      "problem_name": "problem_20",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 9,
+      "problem_name": "problem_9",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 4,
+      "problem_name": "problem_4",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 4,
+          "correct": false,
+          "expected_answer": 902,
+          "problem_text": "There is a collection of $25$ indistinguishable white chips and $25$ indistinguishable black chips. Find the number of ways to place some of these chips in the $25$ unit cells of a $5\\times5$ grid suc",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 18,
+      "problem_name": "problem_18",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 17,
+      "problem_name": "problem_17",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 0,
+      "problem_name": "problem_0",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 0,
+          "correct": false,
+          "expected_answer": 371,
+          "problem_text": "Each vertex of a regular octagon is independently colored either red or blue with equal probability. The probability that the octagon can then be rotated so that all of the blue vertices end up at pos",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 6,
+      "problem_name": "problem_6",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 12,
+      "problem_name": "problem_12",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 5,
+      "problem_name": "problem_5",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 5,
+          "correct": false,
+          "expected_answer": 211,
+          "problem_text": "Let $b \\geq 2$ be an integer. Call a positive integer $n$ $b$\\textit{-eautiful} if it has exactly two digits when expressed in base $b$, and these two digits sum to $\\sqrt{n}$. For example, $81$ is $1",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 10,
+      "problem_name": "problem_10",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 15,
+      "problem_name": "problem_15",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 2,
+      "problem_name": "problem_2",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 2,
+          "correct": false,
+          "expected_answer": 540,
+          "problem_text": "Find the largest possible real part of \\[(75+117i)z + \\frac{96+144i}{z}\\] where $z$ is a complex number with $|z|=4$.When ready, output the final answer enclosed in <answer> and </answer> tags. Do not",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 8,
+      "problem_name": "problem_8",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 1,
+      "problem_name": "problem_1",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 1,
+          "correct": false,
+          "expected_answer": 601,
+          "problem_text": "Find the number of triples of nonnegative integers $(a,b,c)$ satisfying $a + b + c = 300$ and \\[a^2b + a^2c + b^2a + b^2c + c^2a + c^2b = 6,000,000.\\]When ready, output the final answer enclosed in <a",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    {
+      "success": true,
+      "problem_id": 20,
+      "problem_name": "problem_20",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    }
+  ],
+  "problem_results": {
+    "11": {
+      "success": true,
+      "problem_id": 11,
+      "problem_name": "problem_11",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    "16": {
+      "success": true,
+      "problem_id": 16,
+      "problem_name": "problem_16",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    "20": {
+      "success": true,
+      "problem_id": 20,
+      "problem_name": "problem_20",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    "14": {
+      "success": true,
+      "problem_id": 14,
+      "problem_name": "problem_14",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    "13": {
+      "success": true,
+      "problem_id": 13,
+      "problem_name": "problem_13",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    "15": {
+      "success": true,
+      "problem_id": 15,
+      "problem_name": "problem_15",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    "0": {
+      "success": true,
+      "problem_id": 0,
+      "problem_name": "problem_0",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 0,
+          "correct": false,
+          "expected_answer": 371,
+          "problem_text": "Each vertex of a regular octagon is independently colored either red or blue with equal probability. The probability that the octagon can then be rotated so that all of the blue vertices end up at pos",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    "21": {
+      "success": true,
+      "problem_id": 21,
+      "problem_name": "problem_21",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    "2": {
+      "success": true,
+      "problem_id": 2,
+      "problem_name": "problem_2",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 2,
+          "correct": false,
+          "expected_answer": 540,
+          "problem_text": "Find the largest possible real part of \\[(75+117i)z + \\frac{96+144i}{z}\\] where $z$ is a complex number with $|z|=4$.When ready, output the final answer enclosed in <answer> and </answer> tags. Do not",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    "3": {
+      "success": true,
+      "problem_id": 3,
+      "problem_name": "problem_3",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 3,
+          "correct": false,
+          "expected_answer": 294,
+          "problem_text": "Consider the paths of length $16$ that follow the lines from the lower left corner to the upper right corner on an $8\\times 8$ grid. Find the number of such paths that change direction exactly four ti",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    "5": {
+      "success": true,
+      "problem_id": 5,
+      "problem_name": "problem_5",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 5,
+          "correct": false,
+          "expected_answer": 211,
+          "problem_text": "Let $b \\geq 2$ be an integer. Call a positive integer $n$ $b$\\textit{-eautiful} if it has exactly two digits when expressed in base $b$, and these two digits sum to $\\sqrt{n}$. For example, $81$ is $1",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    "6": {
+      "success": true,
+      "problem_id": 6,
+      "problem_name": "problem_6",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    "12": {
+      "success": true,
+      "problem_id": 12,
+      "problem_name": "problem_12",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    "9": {
+      "success": true,
+      "problem_id": 9,
+      "problem_name": "problem_9",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    "19": {
+      "success": true,
+      "problem_id": 19,
+      "problem_name": "problem_19",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    "4": {
+      "success": true,
+      "problem_id": 4,
+      "problem_name": "problem_4",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 4,
+          "correct": false,
+          "expected_answer": 902,
+          "problem_text": "There is a collection of $25$ indistinguishable white chips and $25$ indistinguishable black chips. Find the number of ways to place some of these chips in the $25$ unit cells of a $5\\times5$ grid suc",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    "17": {
+      "success": true,
+      "problem_id": 17,
+      "problem_name": "problem_17",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    "18": {
+      "success": true,
+      "problem_id": 18,
+      "problem_name": "problem_18",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    "22": {
+      "success": true,
+      "problem_id": 22,
+      "problem_name": "problem_22",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    "8": {
+      "success": true,
+      "problem_id": 8,
+      "problem_name": "problem_8",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    "10": {
+      "success": true,
+      "problem_id": 10,
+      "problem_name": "problem_10",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    },
+    "1": {
+      "success": true,
+      "problem_id": 1,
+      "problem_name": "problem_1",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [
+        {
+          "problem_id": 1,
+          "correct": false,
+          "expected_answer": 601,
+          "problem_text": "Find the number of triples of nonnegative integers $(a,b,c)$ satisfying $a + b + c = 300$ and \\[a^2b + a^2c + b^2a + b^2c + c^2a + c^2b = 6,000,000.\\]When ready, output the final answer enclosed in <a",
+          "workflow_path": "/content/agentworkflow/outputs/MATH/workflows/round_1/graph.py",
+          "generated": "No code generated",
+          "cost": 0.0
+        }
+      ],
+      "pass_at_k": 0.0
+    },
+    "23": {
+      "success": true,
+      "problem_id": 23,
+      "problem_name": "problem_23",
+      "best_workflow": null,
+      "best_round": -1,
+      "total_rounds": null,
+      "generated_workflows_count": 1,
+      "evaluation_results": [],
+      "pass_at_k": 0.0
+    }
+  }
+}

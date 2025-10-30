@@ -1,0 +1,26 @@
+{
+  "Custom": {
+    "description": "A flexible operator that takes custom instructions and processes input accordingly",
+    "interface": "Custom(input: str, instruction: str) -> Dict[str, Any]"
+  },
+  "ScEnsemble": {
+    "description": "Self-Consistency Ensemble operator that aggregates multiple solutions",
+    "interface": "ScEnsemble(solutions: List[str], problem: str) -> Dict[str, Any]"
+  },
+  "Programmer": {
+    "description": "Generates and executes Python code to solve problems",
+    "interface": "Programmer(problem: str, analysis: str = 'None') -> Dict[str, Any]"
+  },
+  "AnswerGenerate": {
+    "description": "Generates direct answers to questions",
+    "interface": "AnswerGenerate(input: str) -> Tuple[str, str]"
+  },
+  "CustomCodeGenerate": {
+    "description": "Generates code with custom instructions",
+    "interface": "CustomCodeGenerate(problem: str, entry_point: str, instruction: str) -> Dict[str, Any]"
+  },
+  "Test": {
+    "description": "Tests generated code solutions",
+    "interface": "Test(solution: str, entry_point: str) -> Union[List[Dict], str]"
+  }
+}
