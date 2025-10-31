@@ -16,6 +16,8 @@ except ImportError:
     YAML_AVAILABLE = False
     logging.warning("PyYAML not installed. Using JSON for configs.")
 
+from .dataset_config import get_all_supported_datasets, get_dataset_config
+
 logger = logging.getLogger(__name__)
 
 
@@ -204,11 +206,21 @@ class ConfigLoader:
         # Validate dataset
         if 'dataset' in config:
             dataset = config['dataset']
-            if dataset.get('name') not in ['AIME24', 'HumanEval']:
-                errors.append(f"Invalid dataset name: {dataset.get('name')}")
+            dataset_name = dataset.get('name')
+            supported = get_all_supported_datasets()
 
-            if 'data_path' in dataset and not os.path.exists(dataset['data_path']):
-                errors.append(f"Dataset not found: {dataset['data_path']}")
+            if dataset_name not in supported:
+                errors.append(f"Invalid dataset name: {dataset_name}. Supported: {supported}")
+            else:
+                # Auto-populate data_path if not specified
+                if 'data_path' not in dataset or not dataset['data_path']:
+                    dataset_config = get_dataset_config(dataset_name)
+                    dataset['data_path'] = dataset_config.get_data_path()
+
+            # Check if data file exists
+            if 'data_path' in dataset and dataset['data_path']:
+                if not os.path.exists(dataset['data_path']):
+                    errors.append(f"Dataset not found: {dataset['data_path']}")
 
         # Validate paths
         if 'paths' in config:

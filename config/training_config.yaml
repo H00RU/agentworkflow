@@ -2,11 +2,13 @@
 # Combines MCTS-based search with GRPO policy optimization
 
 # Dataset configuration
+# Supported datasets: AIME24, MATH, GSM8K, HumanEval, MBPP
+# If data_path is not specified, uses default from dataset configuration
 dataset:
-  name: AIME24
-  data_path: ./data/aime24/data.json
+  name: MATH                    # Change to any supported dataset
+  # data_path: ./data/math/math_validate.jsonl  # Optional, uses default if not specified
   train_ratio: 0.8
-  sample_size: null  # Use all if null
+  sample_size: null            # Use all if null
 
 # MCTS (Monte Carlo Tree Search) parameters
 mcts:
@@ -18,7 +20,7 @@ mcts:
 grpo:
   learning_rate: 1.0e-5       # Base learning rate
   lora_learning_rate: 5.0e-4  # LoRA learning rate
-  num_epochs: 3               # Epochs per GRPO training
+  num_epochs: 2               # Epochs per GRPO training (reduced for speed)
   batch_size: 4               # Batch size
   gradient_accumulation_steps: 2
   gamma: 0.99                 # Discount factor
@@ -34,12 +36,13 @@ model:
   lora_rank: 8                # LoRA rank
   lora_alpha: 16              # LoRA alpha
 
-# Training parameters
+# Training parameters - OPTIMIZED FOR 5 HOURS
 training:
-  num_epochs: 3               # Total training epochs
+  num_epochs: 5               # Total training epochs (increased for better learning)
   num_episodes: 3             # Episodes per epoch
-  problems_per_episode: 10    # Problems per episode (increased from 5 to 10 for better coverage)
+  problems_per_episode: 15    # Problems per episode (maximized for 5h window)
   device: cuda                # Device (cuda or cpu)
+  # Total: 5 × 3 × 15 = 225 instances, ~9.4× coverage per problem, ~4.5-5h
 
 # Paths configuration
 paths:

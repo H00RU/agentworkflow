@@ -20,10 +20,11 @@ import torch
 # Add source to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
-from eval import WorkflowEvaluator
+from src.eval import WorkflowEvaluator
 from mcts import MCTSOptimizer
 from grpo import QwenPolicy, GRPOTrainer, GRPOConfig
 from utils.config_loader import ConfigLoader
+from utils.dataset_config import get_dataset_config
 
 
 # Setup logging
@@ -49,7 +50,7 @@ class WorkflowTrainer:
     Complete training pipeline combining MCTS + GRPO.
 
     Flow:
-    1. Load AIME dataset and evaluator
+    1. Load dataset (configurable via training_config.yaml) and evaluator
     2. For each epoch:
         a. For each problem:
             - Run MCTS optimization (generate candidates)
@@ -57,6 +58,8 @@ class WorkflowTrainer:
             - Collect trajectories
         b. Train GRPO on collected trajectories
     3. Save checkpoints and results to Drive
+
+    Supports multiple datasets: AIME24, MATH, GSM8K, HumanEval, MBPP
     """
 
     def __init__(self, config: Dict[str, Any]):
@@ -281,41 +284,69 @@ class WorkflowTrainer:
                 continue
 
             # Run MCTS optimization
-            # Determine dataset type and question type from config
+            # Get dataset configuration
             dataset_name = self.config['dataset']['name']
-            # Map dataset names to AFlow dataset types
-            dataset_type_map = {
-                'AIME24': 'MATH',  # AIME is a math dataset, use MATH for AFlow
-                'GSM8K': 'GSM8K',
-                'MATH': 'MATH',
-                'HumanEval': 'HumanEval',
-                'MBPP': 'MBPP',
-            }
-            dataset_type = dataset_type_map.get(dataset_name, 'MATH')
-            question_type = 'math'  # AIME24 is math problems
+            dataset_config = get_dataset_config(dataset_name)
 
             mcts_result = self.mcts_optimizer.optimize_problem(
                 problem_id=problem_idx,
                 problem_text=problem['question'],
-                dataset_type=dataset_type,
-                question_type=question_type,
+                dataset_type=dataset_config.aflow_type,
+                question_type=dataset_config.question_type,
                 num_iterations=mcts_config['num_iterations'],
                 num_samples_per_iteration=mcts_config['num_samples_per_iteration'],
                 num_search_rounds=mcts_config['num_search_rounds'],
                 save_outputs=True,
+                split='train',  # Use training split during training
             )
 
             episode_result['mcts_results'].append(mcts_result)
 
             # Create trajectory for GRPO
             if mcts_result.get('success') and mcts_result.get('evaluation_results'):
-                trajectory = {
-                    'problem_id': problem_idx,
-                    'problem': problem['question'],
-                    'solutions': [r.get('generated', '') for r in mcts_result['evaluation_results']],
-                    'rewards': [float(r.get('correct', False)) for r in mcts_result['evaluation_results']],
-                }
-                episode_result['trajectories'].append(trajectory)
+                eval_results = mcts_result['evaluation_results']
+
+                # Extract workflow code from files
+                workflow_codes = []
+                rewards = []
+
+                for r in eval_results:
+                    workflow_path = r.get('workflow_path', '')
+                    if not workflow_path or not os.path.exists(workflow_path):
+                        logger.warning(f"Workflow path missing or invalid: {workflow_path}")
+                        continue
+
+                    try:
+                        # Read workflow code
+                        with open(workflow_path, 'r', encoding='utf-8') as f:
+                            workflow_code = f.read()
+
+                        # Validate workflow code is non-empty
+                        if not workflow_code.strip():
+                            logger.warning(f"Empty workflow code in {workflow_path}")
+                            continue
+
+                        workflow_codes.append(workflow_code)
+                        rewards.append(float(r.get('correct', False)))
+
+                    except Exception as e:
+                        logger.warning(f"Failed to read workflow from {workflow_path}: {e}")
+                        continue
+
+                # Only create trajectory if we have valid data
+                if workflow_codes and len(workflow_codes) == len(rewards):
+                    trajectory = {
+                        'problem_id': problem_idx,
+                        'problem': problem['question'],
+                        'workflow_codes': workflow_codes,  # Python code strings
+                        'rewards': rewards,  # 0.0 or 1.0 for incorrect/correct
+                        'num_samples': len(workflow_codes),
+                    }
+                    episode_result['trajectories'].append(trajectory)
+                    logger.info(f"Created trajectory with {len(workflow_codes)} workflow samples "
+                              f"(rewards: {sum(rewards)}/{len(rewards)} correct)")
+                else:
+                    logger.warning(f"No valid workflows for problem {problem_idx}")
 
         return episode_result
 

@@ -89,7 +89,8 @@ class MCTSOptimizer:
                         num_iterations: int = 10,
                         num_samples_per_iteration: int = 3,
                         num_search_rounds: int = 5,
-                        save_outputs: bool = True) -> Dict[str, Any]:
+                        save_outputs: bool = True,
+                        split: str = 'train') -> Dict[str, Any]:
         """
         Run MCTS optimization on a single problem.
 
@@ -102,6 +103,7 @@ class MCTSOptimizer:
             num_samples_per_iteration: Samples per iteration
             num_search_rounds: Number of search rounds
             save_outputs: Whether to save outputs
+            split: Dataset split ('train' or 'test'), defaults to 'train'
 
         Returns:
             Optimization results including best workflow and score
@@ -148,7 +150,8 @@ class MCTSOptimizer:
             if self.evaluator and generated_workflows:
                 evaluation_results = self._evaluate_workflows(
                     generated_workflows,
-                    problem_id
+                    problem_id,
+                    split=split
                 )
 
                 # Compute pass@k
@@ -284,13 +287,15 @@ class MCTSOptimizer:
 
     def _evaluate_workflows(self,
                            workflow_paths: List[str],
-                           problem_id: int) -> List[Dict[str, Any]]:
+                           problem_id: int,
+                           split: str = 'train') -> List[Dict[str, Any]]:
         """
         Evaluate generated workflows using WorkflowEvaluator.
 
         Args:
             workflow_paths: List of paths to generated workflows
             problem_id: Problem ID for evaluation
+            split: Dataset split ('train' or 'test'), defaults to 'train'
 
         Returns:
             List of evaluation results
@@ -299,9 +304,9 @@ class MCTSOptimizer:
             return []
 
         # Get problem text
-        problem = self.evaluator.get_problem(problem_id, split='test')
+        problem = self.evaluator.get_problem(problem_id, split=split)
         if not problem:
-            logger.error(f"Problem {problem_id} not found")
+            logger.error(f"Problem {problem_id} not found in {split} split")
             return []
 
         problem_text = problem['question']
@@ -316,7 +321,7 @@ class MCTSOptimizer:
                 eval_result = self.evaluator.evaluate_workflow_response(
                     generated_text=output,
                     problem_id=problem_id,
-                    split='test'
+                    split=split
                 )
 
                 eval_result['workflow_path'] = workflow_path

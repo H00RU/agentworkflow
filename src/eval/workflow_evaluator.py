@@ -1,6 +1,6 @@
 """
 WorkflowEvaluator: Unified evaluation system for workflow optimization.
-Supports multiple datasets (AIME, HumanEval) with standardized metrics.
+Supports multiple datasets with standardized metrics.
 """
 
 import json
@@ -10,6 +10,8 @@ from abc import ABC, abstractmethod
 from pathlib import Path
 from typing import Dict, List, Any, Tuple, Optional
 import numpy as np
+
+from ..utils.dataset_config import get_dataset_config, is_dataset_supported
 
 
 class AnswerValidator(ABC):
@@ -35,8 +37,8 @@ class AnswerValidator(ABC):
         pass
 
 
-class NumericComparisonValidator(AnswerValidator):
-    """Validator for AIME (numeric answers)."""
+class NumericAnswerValidator(AnswerValidator):
+    """Validator for numeric answers (used in math datasets like AIME, MATH, GSM8K)."""
 
     def extract_answer(self, generated_text: str) -> Optional[int]:
         """
@@ -83,8 +85,22 @@ class NumericComparisonValidator(AnswerValidator):
         if extracted is None:
             return False
 
-        # Exact match for AIME (integer answers)
+        # Exact match for numeric answers (integer)
         return extracted == correct_answer
+
+
+class StringAnswerValidator(AnswerValidator):
+    """Validator for string-based answers."""
+
+    def extract_answer(self, generated_text: str) -> Optional[str]:
+        """Extract string answer from generated text."""
+        return generated_text.strip()
+
+    def validate(self, generated_text: str, correct_answer: str) -> bool:
+        """Validate string answer (case-insensitive, whitespace-normalized)."""
+        generated = generated_text.strip().lower()
+        correct = correct_answer.strip().lower()
+        return generated == correct
 
 
 class CodeExecutionValidator(AnswerValidator):
@@ -177,18 +193,18 @@ class DatasetEvaluator(ABC):
         }
 
 
-class AIEMEvaluator(DatasetEvaluator):
-    """AIME-specific evaluator following AgentFlowTarget standard."""
+class MathDatasetEvaluator(DatasetEvaluator):
+    """Evaluator for math datasets (AIME24, MATH, GSM8K, etc.)"""
 
-    def __init__(self):
-        super().__init__('AIME24')
-        self.validator = NumericComparisonValidator()
+    def __init__(self, dataset_name: str):
+        super().__init__(dataset_name)
+        self.validator = NumericAnswerValidator()
 
     def load_dataset(self, data_path: str) -> None:
         """
-        Load AIME dataset from JSON file.
+        Load math dataset from JSON or JSONL file.
 
-        Expected format:
+        Expected JSON format:
         [
             {
                 "idx": 0,
@@ -199,19 +215,37 @@ class AIEMEvaluator(DatasetEvaluator):
             },
             ...
         ]
-        """
-        with open(data_path, 'r') as f:
-            self.problems = json.load(f)
 
-        print(f"Loaded {len(self.problems)} AIME problems from {data_path}")
+        Expected JSONL format:
+        {"problem": "...", "solution": "..."}
+        {"problem": "...", "solution": "..."}
+        ...
+        """
+        if data_path.endswith('.json'):
+            with open(data_path, 'r') as f:
+                self.problems = json.load(f)
+        elif data_path.endswith('.jsonl'):
+            self.problems = []
+            with open(data_path, 'r') as f:
+                for line in f:
+                    if line.strip():
+                        self.problems.append(json.loads(line))
+        else:
+            raise ValueError(f"Unsupported file format: {data_path}. Expected .json or .jsonl")
+
+        # Normalize answer field name (some datasets use 'answer', others use 'solution')
+        for problem in self.problems:
+            if 'solution' in problem and 'answer' not in problem:
+                problem['answer'] = problem['solution']
+            if 'problem' in problem and 'question' not in problem:
+                problem['question'] = problem['problem']
+
+        print(f"Loaded {len(self.problems)} problems from {data_path}")
 
     def split_dataset(self, train_ratio: float = 0.8) -> None:
-        """
-        Split AIME problems into train/test (80/20 by default).
-        """
+        """Split dataset into train/test."""
         n_train = int(len(self.problems) * train_ratio)
 
-        # Use deterministic split based on problem index
         indices = list(range(len(self.problems)))
         np.random.seed(42)  # For reproducibility
         np.random.shuffle(indices)
@@ -222,7 +256,7 @@ class AIEMEvaluator(DatasetEvaluator):
         self.train_problems = [self.problems[i] for i in train_indices]
         self.test_problems = [self.problems[i] for i in test_indices]
 
-        print(f"Split AIME: {len(self.train_problems)} train, {len(self.test_problems)} test")
+        print(f"Split {self.dataset_name}: {len(self.train_problems)} train, {len(self.test_problems)} test")
 
     def get_problem(self, idx: int, split: str = 'test') -> Dict[str, Any]:
         """Get a single problem."""
@@ -235,30 +269,46 @@ class AIEMEvaluator(DatasetEvaluator):
         return [problems[i] for i in indices if i < len(problems)]
 
 
-class HumanEvalEvaluator(DatasetEvaluator):
-    """HumanEval-specific evaluator (code execution based)."""
+class CodeDatasetEvaluator(DatasetEvaluator):
+    """Evaluator for code datasets (HumanEval, MBPP, etc.)"""
 
-    def __init__(self):
-        super().__init__('HumanEval')
+    def __init__(self, dataset_name: str):
+        super().__init__(dataset_name)
         self.validator = CodeExecutionValidator()
 
     def load_dataset(self, data_path: str) -> None:
-        """Load HumanEval dataset."""
-        # Placeholder - would load from actual HumanEval dataset
-        pass
+        """Load code dataset from JSONL file."""
+        self.problems = []
+        with open(data_path, 'r') as f:
+            for line in f:
+                if line.strip():
+                    self.problems.append(json.loads(line))
+
+        print(f"Loaded {len(self.problems)} problems from {data_path}")
 
     def split_dataset(self, train_ratio: float = 0.8) -> None:
-        """Split HumanEval dataset."""
-        # Placeholder
-        pass
+        """Split dataset into train/test."""
+        n_train = int(len(self.problems) * train_ratio)
+
+        indices = list(range(len(self.problems)))
+        np.random.seed(42)
+        np.random.shuffle(indices)
+
+        train_indices = sorted(indices[:n_train])
+        test_indices = sorted(indices[n_train:])
+
+        self.train_problems = [self.problems[i] for i in train_indices]
+        self.test_problems = [self.problems[i] for i in test_indices]
+
+        print(f"Split {self.dataset_name}: {len(self.train_problems)} train, {len(self.test_problems)} test")
 
 
 class WorkflowEvaluator:
     """
     Unified evaluation system for workflow optimization.
 
-    Supports multiple datasets (AIME, HumanEval) with standardized metrics.
-    Follows AgentFlowTarget standard for evaluation.
+    Supports multiple datasets with standardized metrics.
+    Uses centralized dataset configuration system.
     """
 
     def __init__(self, dataset_type: str = 'AIME24', data_path: Optional[str] = None):
@@ -266,27 +316,32 @@ class WorkflowEvaluator:
         Initialize WorkflowEvaluator.
 
         Args:
-            dataset_type: 'AIME24' or 'HumanEval'
-            data_path: Path to dataset file (required for AIME24)
+            dataset_type: Dataset name (e.g., 'AIME24', 'MATH', 'GSM8K', 'HumanEval', 'MBPP')
+            data_path: Path to dataset file (if None, uses default from configuration)
         """
+        # Validate dataset is supported
+        if not is_dataset_supported(dataset_type):
+            raise ValueError(f"Unknown dataset type: {dataset_type}")
+
         self.dataset_type = dataset_type
+        self.config = get_dataset_config(dataset_type)
         self.evaluator: Optional[DatasetEvaluator] = None
 
-        if dataset_type == 'AIME24':
-            if data_path is None:
-                raise ValueError("data_path required for AIME24")
+        # Use provided data_path or get default from config
+        if data_path is None:
+            data_path = self.config.get_data_path()
 
-            self.evaluator = AIEMEvaluator()
-            self.evaluator.load_dataset(data_path)
-            self.evaluator.split_dataset(train_ratio=0.8)
-
-        elif dataset_type == 'HumanEval':
-            self.evaluator = HumanEvalEvaluator()
-            if data_path:
-                self.evaluator.load_dataset(data_path)
-
+        # Select evaluator based on question type
+        if self.config.question_type == 'math':
+            self.evaluator = MathDatasetEvaluator(dataset_type)
+        elif self.config.question_type == 'code':
+            self.evaluator = CodeDatasetEvaluator(dataset_type)
         else:
-            raise ValueError(f"Unknown dataset type: {dataset_type}")
+            raise ValueError(f"Unknown question type: {self.config.question_type}")
+
+        # Load and split dataset
+        self.evaluator.load_dataset(data_path)
+        self.evaluator.split_dataset(train_ratio=0.8)
 
     def evaluate_workflow_response(self,
                                    generated_text: str,
@@ -347,17 +402,16 @@ class WorkflowEvaluator:
 
     def get_dataset_info(self) -> Dict[str, Any]:
         """Get information about the loaded dataset."""
-        if isinstance(self.evaluator, AIEMEvaluator):
-            return {
-                'dataset_type': 'AIME24',
-                'total_problems': len(self.evaluator.problems),
-                'train_problems': len(self.evaluator.train_problems),
-                'test_problems': len(self.evaluator.test_problems),
-                'train_indices': [p.get('pid', i) for i, p in enumerate(self.evaluator.train_problems)],
-                'test_indices': [p.get('pid', i) for i, p in enumerate(self.evaluator.test_problems)],
-            }
-
-        return {'dataset_type': self.dataset_type}
+        return {
+            'dataset_type': self.dataset_type,
+            'question_type': self.config.question_type,
+            'aflow_type': self.config.aflow_type,
+            'total_problems': len(self.evaluator.problems),
+            'train_problems': len(self.evaluator.train_problems),
+            'test_problems': len(self.evaluator.test_problems),
+            'train_indices': [p.get('pid', i) for i, p in enumerate(self.evaluator.train_problems)],
+            'test_indices': [p.get('pid', i) for i, p in enumerate(self.evaluator.test_problems)],
+        }
 
     def get_problem(self, problem_id: int, split: str = 'test') -> Optional[Dict[str, Any]]:
         """Get a specific problem."""
@@ -417,3 +471,9 @@ class WorkflowEvaluator:
 
     def __repr__(self) -> str:
         return f"WorkflowEvaluator(dataset_type={self.dataset_type})"
+
+
+# Backward compatibility aliases
+NumericComparisonValidator = NumericAnswerValidator
+AIEMEvaluator = MathDatasetEvaluator
+HumanEvalEvaluator = CodeDatasetEvaluator

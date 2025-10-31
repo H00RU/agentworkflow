@@ -107,7 +107,12 @@ def collate_fn_pad(batch: List[Dict[str, torch.Tensor]]) -> Dict[str, torch.Tens
 
 
 class TrajectoryDataset(Dataset):
-    """Dataset for MCTS-generated trajectories with rewards."""
+    """
+    Dataset for GRPO training trajectories.
+
+    Expands grouped trajectories into individual (problem, workflow_code, reward) samples.
+    Each sample belongs to a group (same problem), enabling group-relative advantage computation.
+    """
 
     def __init__(self,
                  trajectories: List[Dict[str, Any]],
@@ -117,48 +122,231 @@ class TrajectoryDataset(Dataset):
         Initialize trajectory dataset.
 
         Args:
-            trajectories: List of trajectory dicts with 'problem', 'solutions', 'rewards'
+            trajectories: List of trajectory dicts with 'problem', 'workflow_codes', 'rewards', 'problem_id'
             tokenizer: Tokenizer for encoding
             max_length: Maximum sequence length
         """
-        self.trajectories = trajectories
         self.tokenizer = tokenizer
         self.max_length = max_length
 
+        # Expand trajectories: each (problem, workflow_code, reward) becomes a sample
+        self.samples = []
+        for traj_idx, traj in enumerate(trajectories):
+            problem = traj['problem']
+            workflow_codes = traj['workflow_codes']
+            rewards = traj['rewards']
+            problem_id = traj['problem_id']
+
+            # Each workflow for this problem is a sample in the same group
+            for code, reward in zip(workflow_codes, rewards):
+                self.samples.append({
+                    'problem': problem,
+                    'workflow_code': code,
+                    'reward': reward,
+                    'group_id': problem_id,  # For group-relative advantages
+                    'traj_idx': traj_idx,
+                })
+
     def __len__(self) -> int:
-        return len(self.trajectories)
+        return len(self.samples)
 
     def __getitem__(self, idx: int) -> Dict[str, torch.Tensor]:
-        trajectory = self.trajectories[idx]
+        sample = self.samples[idx]
 
-        problem = trajectory['problem']
-        solutions = trajectory['solutions']
-        rewards = trajectory['rewards']
+        problem = sample['problem']
+        workflow_code = sample['workflow_code']
+        reward = sample['reward']
+        group_id = sample['group_id']
 
-        # Encode problem
-        problem_inputs = self.tokenizer(
-            problem,
+        # Create prompt: problem as instruction, workflow_code as target
+        prompt = f"Generate a workflow to solve this problem:\n{problem}\n\nWorkflow:"
+
+        # Tokenize prompt (without workflow code) to get prompt length
+        prompt_inputs = self.tokenizer(
+            prompt,
+            add_special_tokens=True,
+            truncation=False,
+            return_tensors="pt",
+        )
+        prompt_length = prompt_inputs['input_ids'].shape[1]
+
+        # Tokenize full sequence (prompt + workflow_code)
+        full_text = f"{prompt}\n{workflow_code}"
+        full_inputs = self.tokenizer(
+            full_text,
+            add_special_tokens=True,
             truncation=True,
             max_length=self.max_length,
+            padding='max_length',
             return_tensors="pt",
         )
 
-        # Encode solutions
-        solution_texts = " ".join(solutions)
-        solution_inputs = self.tokenizer(
-            solution_texts,
-            truncation=True,
-            max_length=self.max_length,
-            return_tensors="pt",
-        )
+        input_ids = full_inputs['input_ids'].squeeze(0)
+        attention_mask = full_inputs['attention_mask'].squeeze(0)
+
+        # Create response mask: 1 for workflow code tokens, 0 for prompt tokens
+        response_mask = torch.zeros_like(attention_mask)
+        if prompt_length < len(response_mask):
+            response_mask[prompt_length:] = attention_mask[prompt_length:]
 
         return {
-            'problem_ids': problem_inputs['input_ids'].squeeze(0),
-            'problem_attention_mask': problem_inputs['attention_mask'].squeeze(0),
-            'solution_ids': solution_inputs['input_ids'].squeeze(0),
-            'solution_attention_mask': solution_inputs['attention_mask'].squeeze(0),
-            'rewards': torch.tensor(rewards, dtype=torch.float32),
+            'input_ids': input_ids,
+            'attention_mask': attention_mask,
+            'response_mask': response_mask,  # Identifies workflow tokens for loss
+            'reward': torch.tensor(reward, dtype=torch.float32),
+            'group_id': torch.tensor(group_id, dtype=torch.long),
         }
+
+
+def compute_grpo_advantages(
+    rewards: torch.Tensor,
+    response_mask: torch.Tensor,
+    group_ids: torch.Tensor,
+    epsilon: float = 1e-6,
+    norm_by_std: bool = True
+) -> torch.Tensor:
+    """
+    Compute group-relative advantages for GRPO.
+
+    For each group (same problem), compute:
+        advantage = (reward - group_mean) / (group_std + epsilon)
+
+    This implements the core GRPO concept: rewards are relative to other solutions
+    for the same problem, not absolute.
+
+    Args:
+        rewards: Shape (batch_size, seq_len) - token-level rewards (typically same value repeated)
+        response_mask: Shape (batch_size, seq_len) - mask for response tokens
+        group_ids: Shape (batch_size,) - problem/group identifier
+        epsilon: Small value to prevent division by zero
+        norm_by_std: Whether to normalize by std (standard GRPO)
+
+    Returns:
+        advantages: Shape (batch_size, seq_len) - token-level advantages
+    """
+    # Sum rewards over sequence length to get scalar reward per sample
+    # Shape: (batch_size,)
+    scores = (rewards * response_mask).sum(dim=-1) / (response_mask.sum(dim=-1) + epsilon)
+
+    # Group scores by group_id
+    unique_groups = torch.unique(group_ids)
+    group_means = torch.zeros_like(scores)
+    group_stds = torch.ones_like(scores)
+
+    for group_id in unique_groups:
+        mask = (group_ids == group_id)
+        group_scores = scores[mask]
+
+        if len(group_scores) == 1:
+            # Single sample in group: advantage = 0
+            group_means[mask] = 0.0
+            group_stds[mask] = 1.0
+        else:
+            # Multiple samples: compute mean and std
+            mean_val = group_scores.mean()
+            std_val = group_scores.std()
+            group_means[mask] = mean_val
+            group_stds[mask] = std_val
+
+    # Compute advantages
+    if norm_by_std:
+        # Standard GRPO: (score - mean) / (std + epsilon)
+        advantages_scalar = (scores - group_means) / (group_stds + epsilon)
+    else:
+        # Dr.GRPO variant: (score - mean)
+        advantages_scalar = scores - group_means
+
+    # Broadcast to token-level: same advantage for all tokens in response
+    # Shape: (batch_size, seq_len)
+    advantages = advantages_scalar.unsqueeze(-1) * response_mask
+
+    return advantages
+
+
+def compute_grpo_loss(
+    logits: torch.Tensor,
+    input_ids: torch.Tensor,
+    response_mask: torch.Tensor,
+    advantages: torch.Tensor,
+    old_log_probs: Optional[torch.Tensor] = None,
+    clip_ratio: float = 0.2,
+    entropy_coeff: float = 0.01
+) -> Dict[str, torch.Tensor]:
+    """
+    Compute GRPO policy gradient loss with optional PPO clipping.
+
+    Loss = -advantages * log_prob(actual_tokens) + entropy_bonus
+
+    Args:
+        logits: Shape (batch_size, seq_len, vocab_size) - model output logits
+        input_ids: Shape (batch_size, seq_len) - actual token IDs (workflow code)
+        response_mask: Shape (batch_size, seq_len) - mask for response tokens
+        advantages: Shape (batch_size, seq_len) - group-relative advantages
+        old_log_probs: Shape (batch_size, seq_len) - log probs from old policy (for PPO)
+        clip_ratio: PPO clipping ratio
+        entropy_coeff: Coefficient for entropy bonus
+
+    Returns:
+        Dict with 'loss', 'pg_loss', 'entropy', 'kl' (if old_log_probs provided)
+    """
+    # Shift for next-token prediction: predict token t+1 from tokens 0:t
+    shift_logits = logits[:, :-1, :].contiguous()
+    shift_input_ids = input_ids[:, 1:].contiguous()
+    shift_response_mask = response_mask[:, 1:].contiguous()
+    shift_advantages = advantages[:, 1:].contiguous()
+
+    # Compute log probabilities of actual tokens
+    # Shape: (batch_size, seq_len-1, vocab_size)
+    log_probs_all = F.log_softmax(shift_logits, dim=-1)
+
+    # Gather log_prob of actual tokens
+    # Shape: (batch_size, seq_len-1)
+    log_probs = log_probs_all.gather(dim=-1, index=shift_input_ids.unsqueeze(-1)).squeeze(-1)
+
+    # Compute policy gradient loss
+    # Standard PG: -A * log_prob
+    pg_loss_per_token = -advantages[:, :-1] * log_probs
+
+    # Apply response mask and average
+    masked_pg_loss = pg_loss_per_token * shift_response_mask
+    pg_loss = masked_pg_loss.sum() / (shift_response_mask.sum() + 1e-8)
+
+    # Compute entropy for exploration
+    probs = F.softmax(shift_logits, dim=-1)
+    entropy_per_token = -(probs * log_probs_all).sum(dim=-1)
+    masked_entropy = entropy_per_token * shift_response_mask
+    entropy = masked_entropy.sum() / (shift_response_mask.sum() + 1e-8)
+
+    # Total loss
+    total_loss = pg_loss - entropy_coeff * entropy
+
+    result = {
+        'loss': total_loss,
+        'pg_loss': pg_loss,
+        'entropy': entropy,
+    }
+
+    # Optional: PPO clipping if old_log_probs provided
+    if old_log_probs is not None:
+        shift_old_log_probs = old_log_probs[:, 1:].contiguous()
+        ratio = torch.exp(log_probs - shift_old_log_probs)
+        kl = (shift_old_log_probs - log_probs) * shift_response_mask
+        result['kl'] = kl.sum() / (shift_response_mask.sum() + 1e-8)
+
+        # PPO clipped loss
+        clipped_ratio = torch.clamp(ratio, 1.0 - clip_ratio, 1.0 + clip_ratio)
+        pg_loss_1 = -shift_advantages * ratio
+        pg_loss_2 = -shift_advantages * clipped_ratio
+        pg_loss_clipped_per_token = torch.max(pg_loss_1, pg_loss_2)
+
+        masked_pg_loss_clipped = pg_loss_clipped_per_token * shift_response_mask
+        pg_loss_clipped = masked_pg_loss_clipped.sum() / (shift_response_mask.sum() + 1e-8)
+
+        result['loss'] = pg_loss_clipped - entropy_coeff * entropy
+        result['pg_loss'] = pg_loss_clipped
+        result['clip_frac'] = ((ratio - 1.0).abs() > clip_ratio).float().mean()
+
+    return result
 
 
 class GRPOTrainer:
@@ -248,10 +436,17 @@ class GRPOTrainer:
     def train_step(self,
                   batch: Dict[str, torch.Tensor]) -> Dict[str, float]:
         """
-        Perform a single training step.
+        Perform a single training step with correct GRPO implementation.
+
+        Flow:
+        1. Forward pass: get logits for problem+workflow
+        2. Compute group-relative advantages from rewards
+        3. Compute GRPO loss: -advantages * log_prob(workflow_tokens)
+        4. Backprop and update
 
         Args:
-            batch: Training batch
+            batch: Training batch with 'input_ids', 'attention_mask', 'response_mask',
+                   'reward', 'group_id'
 
         Returns:
             Loss metrics
@@ -259,29 +454,46 @@ class GRPOTrainer:
         self.policy.set_train(True)
 
         # Move batch to device
-        problem_ids = batch['problem_ids'].to(self.device)
-        attention_mask = batch['problem_attention_mask'].to(self.device)
-        rewards = batch['rewards'].to(self.device)
+        input_ids = batch['input_ids'].to(self.device)
+        attention_mask = batch['attention_mask'].to(self.device)
+        response_mask = batch['response_mask'].to(self.device)
+        rewards = batch['reward'].to(self.device)
+        group_ids = batch['group_id'].to(self.device)
 
-        # Forward pass
+        # Expand scalar rewards to token-level (same value for all tokens)
+        # Shape: (batch_size, seq_len)
+        rewards_expanded = rewards.unsqueeze(-1).expand_as(response_mask) * response_mask
+
+        # Compute group-relative advantages
+        # This is the CORE of GRPO: rewards relative to other solutions for same problem
+        advantages = compute_grpo_advantages(
+            rewards=rewards_expanded,
+            response_mask=response_mask,
+            group_ids=group_ids,
+            epsilon=1e-6,
+            norm_by_std=True
+        )
+
+        # Forward pass through model
         outputs = self.policy.model(
-            input_ids=problem_ids,
+            input_ids=input_ids,
             attention_mask=attention_mask,
-            output_hidden_states=True,
         )
 
         logits = outputs.logits
-        hidden_states = outputs.hidden_states[-1]
 
-        # Policy loss (log prob weighted by advantages)
-        log_probs = F.log_softmax(logits, dim=-1)
-        prob_loss = -(log_probs.mean() * rewards.mean())
+        # Compute GRPO loss with token-level log_prob
+        loss_dict = compute_grpo_loss(
+            logits=logits,
+            input_ids=input_ids,
+            response_mask=response_mask,
+            advantages=advantages,
+            old_log_probs=None,  # No reference policy yet
+            clip_ratio=self.config.clip_ratio,
+            entropy_coeff=self.config.entropy_coeff
+        )
 
-        # Entropy bonus for exploration
-        entropy = -(log_probs.exp() * log_probs).sum(dim=-1).mean()
-
-        # Total loss
-        total_loss = prob_loss - self.config.entropy_coeff * entropy
+        total_loss = loss_dict['loss']
 
         # Backward pass
         total_loss.backward()
@@ -298,10 +510,13 @@ class GRPOTrainer:
 
         self.global_step += 1
 
+        # Return metrics
         return {
             'loss': total_loss.item(),
-            'policy_loss': prob_loss.item(),
-            'entropy': entropy.item(),
+            'pg_loss': loss_dict['pg_loss'].item(),
+            'entropy': loss_dict['entropy'].item(),
+            'mean_reward': rewards.mean().item(),
+            'mean_advantage': advantages[response_mask > 0].mean().item() if response_mask.sum() > 0 else 0.0,
         }
 
     def train_epoch(self,
