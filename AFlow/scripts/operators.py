@@ -168,7 +168,7 @@ def run_code(code):
         # Check for prohibited imports
         for lib in disallowed_imports:
             if f"import {lib}" in code or f"from {lib}" in code:
-                logger.info("Detected prohibited import: %s", lib)
+                logger.info(f"Detected prohibited import: {lib}")
                 return "Error", f"Prohibited import: {lib} and graphing functionalities"
 
         # Use exec to execute the code
