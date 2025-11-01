@@ -39,6 +39,7 @@ class GRPOConfig:
     entropy_coeff: float = 0.01
     value_coeff: float = 0.5
     max_grad_norm: float = 1.0
+    clip_ratio: float = 0.2  # PPO clipping ratio
 
     # Optimization
     warmup_steps: int = 100
@@ -538,7 +539,7 @@ class GRPOTrainer:
             metrics = self.train_step(batch)
 
             epoch_losses.append(metrics['loss'])
-            epoch_policy_losses.append(metrics['policy_loss'])
+            epoch_policy_losses.append(metrics['pg_loss'])
             epoch_entropies.append(metrics['entropy'])
 
             if (batch_idx + 1) % 10 == 0:
@@ -585,7 +586,6 @@ class GRPOTrainer:
             batch_size=self.config.batch_size,
             shuffle=True,
             num_workers=0,
-            collate_fn=collate_fn_pad,  # Use custom collate function for padding
         )
 
         results = {
